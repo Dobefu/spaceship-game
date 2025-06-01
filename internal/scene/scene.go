@@ -4,13 +4,14 @@ import (
 	"github.com/Dobefu/spaceship-game/internal/game_object"
 )
 
-type scene interface {
-	GetGameObjects() []game_object.GameObject
-	AddGameObject(gameObject *game_object.GameObject)
+type IScene interface {
+	Init()
+	GetGameObjects() []game_object.IGameObject
+	AddGameObject(gameObject game_object.IGameObject)
 }
 
 type Scene struct {
-	scene
+	IScene
 
-	gameObjects []game_object.GameObject
+	gameObjects []game_object.IGameObject
 }

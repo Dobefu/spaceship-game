@@ -4,6 +4,7 @@ import (
 	"log"
 
 	"github.com/Dobefu/spaceship-game/internal/scene"
+	"github.com/Dobefu/spaceship-game/internal/scenes/game_scene"
 	"github.com/hajimehoshi/ebiten/v2"
 )
 
@@ -13,11 +14,21 @@ var (
 	gameWidth  = 640
 )
 
+type IGame interface {
+	SetScene(scene *scene.IScene)
+}
+
 type Game struct {
-	scene scene.Scene
+	IGame
+
+	scene scene.IScene
 }
 
 func (g *Game) Update() (err error) {
+	if g.scene == nil {
+		return nil
+	}
+
 	gameObjects := g.scene.GetGameObjects()
 
 	for _, gameObject := range gameObjects {
@@ -32,6 +43,10 @@ func (g *Game) Update() (err error) {
 }
 
 func (g *Game) Draw(screen *ebiten.Image) {
+	if g.scene == nil {
+		return
+	}
+
 	gameObjects := g.scene.GetGameObjects()
 
 	for _, gameObject := range gameObjects {
@@ -46,6 +61,8 @@ func (g *Game) Layout(outsideWidth, outsideHeight int) (screenWidth, screenHeigh
 func Run() {
 	ebiten.SetWindowSize(gameHeight, gameWidth)
 	ebiten.SetWindowTitle("Spaceship Game")
+
+	game.SetScene(&game_scene.GameScene{})
 
 	err := ebiten.RunGame(game)
 
