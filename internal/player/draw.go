@@ -14,9 +14,12 @@ func (p *Player) Draw(screen *ebiten.Image) {
 		sin := float32(math.Sin(p.rotation))
 		cos := float32(math.Cos(p.rotation))
 
+		x := (points[0] - modelCenter[0])
+		y := (points[1] - modelCenter[1])
+
 		modelPath.LineTo(
-			(((points[0]-50)*cos-(points[1]-50)*sin)+p.x)*p.scale,
-			(((points[0]-50)*sin+(points[1]-50)*cos)+p.y)*p.scale,
+			((x*cos-y*sin)+p.x)*p.scale,
+			((x*sin+y*cos)+p.y)*p.scale,
 		)
 	}
 

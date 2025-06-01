@@ -12,6 +12,7 @@ import (
 var (
 	modelPath       vector.Path
 	modelPathPoints [][2]float32
+	modelCenter     [2]float32
 
 	whiteImage    = ebiten.NewImage(3, 3)
 	whiteSubImage = whiteImage.SubImage(image.Rect(1, 1, 2, 2)).(*ebiten.Image)
@@ -27,6 +28,14 @@ func init() {
 		{50, 75},
 		{0, 100},
 	}
+
+	for _, points := range modelPathPoints {
+		modelCenter[0] += points[0]
+		modelCenter[1] += points[1]
+	}
+
+	modelCenter[0] /= float32(len(modelPathPoints))
+	modelCenter[1] /= float32(len(modelPathPoints))
 
 	whiteImage.Fill(color.White)
 	strokeOptions = &vector.StrokeOptions{
