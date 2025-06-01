@@ -10,5 +10,5 @@ type GameScene struct {
 }
 
 func (s *GameScene) Init() {
-	s.AddGameObject(player.Player{})
+	s.AddGameObject(player.NewPlayer(320, 320))
 }

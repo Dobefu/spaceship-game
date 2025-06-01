@@ -39,28 +39,21 @@ func init() {
 }
 
 type Player struct {
-	game_object.IGameObject
+	game_object.GameObject
 
-	X float32
-	Y float32
+	x        float32
+	y        float32
+	scale    float32
+	rotation float64
 
 	vertices []ebiten.Vertex
 	indices  []uint16
 }
 
-func (p Player) Update() (err error) {
-	return nil
-}
-
-func (p Player) Draw(screen *ebiten.Image) {
-	modelPath = vector.Path{}
-
-	for _, points := range modelPathPoints {
-		modelPath.LineTo(points[0]+p.X, points[1]+p.Y)
+func NewPlayer(x float32, y float32) *Player {
+	return &Player{
+		x:     x,
+		y:     y,
+		scale: 1,
 	}
-
-	modelPath.Close()
-
-	p.vertices, p.indices = modelPath.AppendVerticesAndIndicesForStroke(p.vertices[:0], p.indices[:0], strokeOptions)
-	screen.DrawTriangles(p.vertices, p.indices, whiteSubImage, drawTrianglesOptions)
 }
