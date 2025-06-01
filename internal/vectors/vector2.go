@@ -1,6 +1,17 @@
 package vectors
 
+type IVector2 interface {
+	Add(vec Vector2)
+}
+
 type Vector2 struct {
+	IVector2
+
 	X float32
 	Y float32
+}
+
+func (v *Vector2) Add(vec Vector2) {
+	v.X += vec.X
+	v.Y += vec.Y
 }
