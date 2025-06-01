@@ -3,6 +3,7 @@ package game
 import (
 	"log"
 
+	"github.com/Dobefu/spaceship-game/internal/scene"
 	"github.com/hajimehoshi/ebiten/v2"
 )
 
@@ -12,7 +13,9 @@ var (
 	gameWidth  = 640
 )
 
-type Game struct{}
+type Game struct {
+	scene scene.Scene
+}
 
 func (g *Game) Update() error {
 	return nil
