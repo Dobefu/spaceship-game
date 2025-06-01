@@ -9,13 +9,13 @@ type IScene interface {
 	Init()
 	GetGameObjects() []game_object.IGameObject
 	AddGameObject(gameObject game_object.IGameObject)
-	SetCamera(camera camera.ICamera)
-	GetCamera() (camera camera.ICamera)
+	SetCamera(camera camera.Camera)
+	GetCamera() (camera camera.Camera)
 }
 
 type Scene struct {
 	IScene
 
-	camera      camera.ICamera
+	Camera      camera.Camera
 	gameObjects []game_object.IGameObject
 }

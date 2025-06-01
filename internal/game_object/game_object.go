@@ -7,7 +7,7 @@ import (
 
 type IGameObject interface {
 	Update() (err error)
-	Draw(screen *ebiten.Image)
+	Draw(screen *ebiten.Image, offset vectors.Vector2)
 	GetPosition() (position vectors.Vector2)
 }
 

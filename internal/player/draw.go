@@ -3,11 +3,12 @@ package player
 import (
 	"math"
 
+	"github.com/Dobefu/spaceship-game/internal/vectors"
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/vector"
 )
 
-func (p *Player) Draw(screen *ebiten.Image) {
+func (p *Player) Draw(screen *ebiten.Image, offset vectors.Vector2) {
 	modelPath = vector.Path{}
 
 	for _, points := range modelPathPoints {
@@ -17,9 +18,10 @@ func (p *Player) Draw(screen *ebiten.Image) {
 		x := (points.X - modelCenter.X)
 		y := (points.Y - modelCenter.Y)
 
+		// TODO: Get the actual canvas size instead of hardcoding it here.
 		modelPath.LineTo(
-			((x*cos-y*sin)+p.GetPosition().X)*p.scale,
-			((x*sin+y*cos)+p.GetPosition().Y)*p.scale,
+			(((x*cos-y*sin)+p.GetPosition().X)*p.scale)-(offset.X-320),
+			(((x*sin+y*cos)+p.GetPosition().Y)*p.scale)-(offset.Y-320),
 		)
 	}
 

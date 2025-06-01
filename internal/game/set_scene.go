@@ -7,6 +7,6 @@ import (
 
 func (g *Game) SetScene(scene scene.IScene) {
 	g.scene = scene
-	g.scene.SetCamera(&camera.Camera{})
+	g.scene.SetCamera(camera.Camera{})
 	g.scene.Init()
 }

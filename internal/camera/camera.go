@@ -7,6 +7,7 @@ import (
 
 type ICamera interface {
 	SetTarget(target game_object.IGameObject)
+	GetPosition() (position vectors.IVector2)
 	Update()
 }
 

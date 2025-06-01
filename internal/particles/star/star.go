@@ -2,6 +2,7 @@ package star
 
 import (
 	"image/color"
+	"math"
 
 	"github.com/Dobefu/spaceship-game/internal/game_object"
 	"github.com/Dobefu/spaceship-game/internal/vectors"
@@ -25,11 +26,11 @@ func (s *Star) Update() (err error) {
 	return nil
 }
 
-func (s *Star) Draw(screen *ebiten.Image) {
+func (s *Star) Draw(screen *ebiten.Image, offset vectors.Vector2) {
 	vector.DrawFilledRect(
 		screen,
-		s.position.X,
-		s.position.Y,
+		float32(math.Mod(math.Mod(float64(s.position.X-offset.X), 640)+640, 640)),
+		float32(math.Mod(math.Mod(float64(s.position.Y-offset.Y), 640)+640, 640)),
 		s.position.Z,
 		s.position.Z,
 		color.White,

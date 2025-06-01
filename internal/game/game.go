@@ -39,7 +39,11 @@ func (g *Game) Update() (err error) {
 		}
 	}
 
-	g.scene.GetCamera().Update()
+	camera := g.scene.GetCamera()
+	camera.Update()
+
+	// TODO: Not this.
+	g.scene.SetCamera(camera)
 
 	return nil
 }
@@ -50,9 +54,10 @@ func (g *Game) Draw(screen *ebiten.Image) {
 	}
 
 	gameObjects := g.scene.GetGameObjects()
+	camera := g.scene.GetCamera()
 
 	for _, gameObject := range gameObjects {
-		gameObject.Draw(screen)
+		gameObject.Draw(screen, camera.GetPosition())
 	}
 }
 
