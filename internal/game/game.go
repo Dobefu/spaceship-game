@@ -17,12 +17,26 @@ type Game struct {
 	scene scene.Scene
 }
 
-func (g *Game) Update() error {
+func (g *Game) Update() (err error) {
+	gameObjects := g.scene.GetGameObjects()
+
+	for _, gameObject := range gameObjects {
+		err = gameObject.Update()
+
+		if err != nil {
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (g *Game) Draw(screen *ebiten.Image) {
-	return
+	gameObjects := g.scene.GetGameObjects()
+
+	for _, gameObject := range gameObjects {
+		gameObject.Draw(screen)
+	}
 }
 
 func (g *Game) Layout(outsideWidth, outsideHeight int) (screenWidth, screenHeight int) {

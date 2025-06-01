@@ -5,6 +5,7 @@ import (
 )
 
 type scene interface {
+	GetGameObjects() []game_object.GameObject
 	AddGameObject(gameObject *game_object.GameObject)
 }
 
