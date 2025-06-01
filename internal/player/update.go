@@ -37,8 +37,8 @@ func (p *Player) Update() (err error) {
 
 	p.position.Add(p.velocity)
 	p.velocity.Mul(vectors.Vector2{
-		X: .98,
-		Y: .98,
+		X: .99,
+		Y: .99,
 	})
 
 	return nil
