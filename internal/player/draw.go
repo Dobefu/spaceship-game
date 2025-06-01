@@ -18,8 +18,8 @@ func (p *Player) Draw(screen *ebiten.Image) {
 		y := (points.Y - modelCenter.Y)
 
 		modelPath.LineTo(
-			((x*cos-y*sin)+p.x)*p.scale,
-			((x*sin+y*cos)+p.y)*p.scale,
+			((x*cos-y*sin)+p.position.X)*p.scale,
+			((x*sin+y*cos)+p.position.Y)*p.scale,
 		)
 	}
 

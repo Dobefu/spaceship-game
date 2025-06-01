@@ -51,8 +51,7 @@ func init() {
 type Player struct {
 	game_object.GameObject
 
-	x        float32
-	y        float32
+	position vectors.Vector2
 	scale    float32
 	rotation float64
 
@@ -62,8 +61,10 @@ type Player struct {
 
 func NewPlayer(x float32, y float32) *Player {
 	return &Player{
-		x:     x,
-		y:     y,
+		position: vectors.Vector2{
+			X: x,
+			Y: y,
+		},
 		scale: 1,
 	}
 }
