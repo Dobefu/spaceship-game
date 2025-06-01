@@ -1,38 +1,9 @@
 package main
 
 import (
-	"log"
-
-	"github.com/hajimehoshi/ebiten/v2"
+	"github.com/Dobefu/spaceship-game/internal/game"
 )
-
-var (
-	game       = &Game{}
-	gameHeight = 640
-	gameWidth  = 640
-)
-
-type Game struct{}
-
-func (g *Game) Update() error {
-	return nil
-}
-
-func (g *Game) Draw(screen *ebiten.Image) {
-	return
-}
-
-func (g *Game) Layout(outsideWidth, outsideHeight int) (screenWidth, screenHeight int) {
-	return gameHeight, gameWidth
-}
 
 func main() {
-	ebiten.SetWindowSize(gameHeight, gameWidth)
-	ebiten.SetWindowTitle("Spaceship Game")
-
-	err := ebiten.RunGame(game)
-
-	if err != nil {
-		log.Fatal(err)
-	}
+	game.Run()
 }
