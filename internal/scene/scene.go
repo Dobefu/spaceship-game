@@ -1,8 +1,12 @@
 package scene
 
-import "github.com/Dobefu/spaceship-game/internal/game_object"
+import (
+	"github.com/Dobefu/spaceship-game/internal/game_object"
+)
 
-type scene interface{}
+type scene interface {
+	AddGameObject(gameObject *game_object.GameObject)
+}
 
 type Scene struct {
 	scene
