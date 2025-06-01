@@ -51,7 +51,6 @@ func init() {
 type Player struct {
 	game_object.GameObject
 
-	position vectors.Vector2
 	velocity vectors.Vector2
 	scale    float32
 	rotation float64
@@ -60,9 +59,8 @@ type Player struct {
 	indices  []uint16
 }
 
-func NewPlayer(position vectors.Vector2) *Player {
-	return &Player{
-		position: position,
+func NewPlayer(position vectors.Vector2) (player *Player) {
+	player = &Player{
 		velocity: vectors.Vector2{
 			X: 0,
 			Y: 0,
@@ -70,4 +68,8 @@ func NewPlayer(position vectors.Vector2) *Player {
 		scale:    1,
 		rotation: 0,
 	}
+
+	player.SetPosition(position)
+
+	return player
 }

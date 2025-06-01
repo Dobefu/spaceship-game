@@ -39,6 +39,8 @@ func (g *Game) Update() (err error) {
 		}
 	}
 
+	g.scene.GetCamera().Update()
+
 	return nil
 }
 

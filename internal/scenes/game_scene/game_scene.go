@@ -14,7 +14,10 @@ type GameScene struct {
 }
 
 func (s *GameScene) Init() {
-	s.AddGameObject(player.NewPlayer(vectors.Vector2{X: 320, Y: 320}))
+	player := player.NewPlayer(vectors.Vector2{X: 320, Y: 320})
+
+	s.AddGameObject(player)
+	s.GetCamera().SetTarget(player)
 
 	for range 200 {
 		randX := rand.Float32() * 640
