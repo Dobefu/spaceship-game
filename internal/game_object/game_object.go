@@ -1,14 +1,14 @@
 package game_object
 
-import "github.com/hajimehoshi/ebiten"
+import "github.com/hajimehoshi/ebiten/v2"
 
-type gameObject interface {
+type IGameObject interface {
 	Update() (err error)
 	Draw(screen *ebiten.Image)
 }
 
 type GameObject struct {
-	gameObject
+	IGameObject
 
 	X float32
 	Y float32
