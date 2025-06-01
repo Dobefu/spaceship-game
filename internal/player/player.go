@@ -24,10 +24,10 @@ var (
 
 func init() {
 	modelPathPoints = []vectors.Vector2{
-		{X: 50, Y: 0},
-		{X: 100, Y: 100},
-		{X: 50, Y: 75},
-		{X: 0, Y: 100},
+		{X: 25, Y: 0},
+		{X: 50, Y: 50},
+		{X: 25, Y: 37},
+		{X: 0, Y: 50},
 	}
 
 	for _, points := range modelPathPoints {
