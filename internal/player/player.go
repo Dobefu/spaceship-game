@@ -60,12 +60,9 @@ type Player struct {
 	indices  []uint16
 }
 
-func NewPlayer(x float32, y float32) *Player {
+func NewPlayer(position vectors.Vector2) *Player {
 	return &Player{
-		position: vectors.Vector2{
-			X: x,
-			Y: y,
-		},
+		position: position,
 		velocity: vectors.Vector2{
 			X: 0,
 			Y: 0,

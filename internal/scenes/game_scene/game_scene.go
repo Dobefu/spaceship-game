@@ -3,6 +3,7 @@ package game_scene
 import (
 	"github.com/Dobefu/spaceship-game/internal/player"
 	"github.com/Dobefu/spaceship-game/internal/scene"
+	"github.com/Dobefu/spaceship-game/internal/vectors"
 )
 
 type GameScene struct {
@@ -10,5 +11,5 @@ type GameScene struct {
 }
 
 func (s *GameScene) Init() {
-	s.AddGameObject(player.NewPlayer(320, 320))
+	s.AddGameObject(player.NewPlayer(vectors.Vector2{X: 320, Y: 320}))
 }
