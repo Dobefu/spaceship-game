@@ -11,5 +11,7 @@ func (p *Player) Update() (err error) {
 		p.rotation += .1
 	}
 
+	p.position.Add(p.velocity)
+
 	return nil
 }

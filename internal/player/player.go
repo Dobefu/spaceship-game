@@ -52,6 +52,7 @@ type Player struct {
 	game_object.GameObject
 
 	position vectors.Vector2
+	velocity vectors.Vector2
 	scale    float32
 	rotation float64
 
@@ -65,6 +66,11 @@ func NewPlayer(x float32, y float32) *Player {
 			X: x,
 			Y: y,
 		},
-		scale: 1,
+		velocity: vectors.Vector2{
+			X: 0,
+			Y: 0,
+		},
+		scale:    1,
+		rotation: 0,
 	}
 }
