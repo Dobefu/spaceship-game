@@ -5,14 +5,15 @@ import (
 	"image/color"
 
 	"github.com/Dobefu/spaceship-game/internal/game_object"
+	"github.com/Dobefu/spaceship-game/internal/vectors"
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/vector"
 )
 
 var (
 	modelPath       vector.Path
-	modelPathPoints [][2]float32
-	modelCenter     [2]float32
+	modelPathPoints []vectors.Vector2
+	modelCenter     vectors.Vector2
 
 	whiteImage    = ebiten.NewImage(3, 3)
 	whiteSubImage = whiteImage.SubImage(image.Rect(1, 1, 2, 2)).(*ebiten.Image)
@@ -22,20 +23,20 @@ var (
 )
 
 func init() {
-	modelPathPoints = [][2]float32{
-		{50, 0},
-		{100, 100},
-		{50, 75},
-		{0, 100},
+	modelPathPoints = []vectors.Vector2{
+		{X: 50, Y: 0},
+		{X: 100, Y: 100},
+		{X: 50, Y: 75},
+		{X: 0, Y: 100},
 	}
 
 	for _, points := range modelPathPoints {
-		modelCenter[0] += points[0]
-		modelCenter[1] += points[1]
+		modelCenter.X += points.X
+		modelCenter.Y += points.Y
 	}
 
-	modelCenter[0] /= float32(len(modelPathPoints))
-	modelCenter[1] /= float32(len(modelPathPoints))
+	modelCenter.X /= float32(len(modelPathPoints))
+	modelCenter.Y /= float32(len(modelPathPoints))
 
 	whiteImage.Fill(color.White)
 	strokeOptions = &vector.StrokeOptions{
