@@ -30,10 +30,10 @@ func (s *Star) Draw(screen *ebiten.Image, offset vectors.Vector2) {
 	// TODO: Get the actual canvas size instead of hardcoding it here.
 	vector.DrawFilledRect(
 		screen,
-		float32(math.Mod(math.Mod(float64(s.position.X-offset.X), 640)+640, 640))*s.position.Z,
-		float32(math.Mod(math.Mod(float64(s.position.Y-offset.Y), 640)+640, 640))*s.position.Z,
-		s.position.Z,
-		s.position.Z,
+		float32(math.Mod(math.Mod(s.position.X-offset.X, 640)+640, 640)*s.position.Z),
+		float32(math.Mod(math.Mod(s.position.Y-offset.Y, 640)+640, 640)*s.position.Z),
+		float32(s.position.Z),
+		float32(s.position.Z),
 		color.White,
 		false,
 	)

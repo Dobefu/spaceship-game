@@ -10,9 +10,9 @@ type IVector3 interface {
 type Vector3 struct {
 	IVector3
 
-	X float32
-	Y float32
-	Z float32
+	X float64
+	Y float64
+	Z float64
 }
 
 func (v *Vector3) Add(vec Vector3) {

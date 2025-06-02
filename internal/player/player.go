@@ -35,8 +35,8 @@ func init() {
 		modelCenter.Y += points.Y
 	}
 
-	modelCenter.X /= float32(len(modelPathPoints))
-	modelCenter.Y /= float32(len(modelPathPoints))
+	modelCenter.X /= float64(len(modelPathPoints))
+	modelCenter.Y /= float64(len(modelPathPoints))
 
 	whiteImage.Fill(color.White)
 	strokeOptions = &vector.StrokeOptions{
@@ -52,7 +52,7 @@ type Player struct {
 	game_object.GameObject
 
 	velocity vectors.Vector2
-	scale    float32
+	scale    float64
 	rotation float64
 
 	vertices []ebiten.Vertex

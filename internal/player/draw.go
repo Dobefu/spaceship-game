@@ -12,16 +12,16 @@ func (p *Player) Draw(screen *ebiten.Image, offset vectors.Vector2) {
 	modelPath = vector.Path{}
 
 	for _, points := range modelPathPoints {
-		sin := float32(math.Sin(p.rotation))
-		cos := float32(math.Cos(p.rotation))
+		sin := math.Sin(p.rotation)
+		cos := math.Cos(p.rotation)
 
 		x := (points.X - modelCenter.X)
 		y := (points.Y - modelCenter.Y)
 
 		// TODO: Get the actual canvas size instead of hardcoding it here.
 		modelPath.LineTo(
-			(((x*cos-y*sin)+p.GetPosition().X)*p.scale)-(offset.X-320),
-			(((x*sin+y*cos)+p.GetPosition().Y)*p.scale)-(offset.Y-320),
+			float32((((x*cos-y*sin)+p.GetPosition().X)*p.scale)-(offset.X-320)),
+			float32((((x*sin+y*cos)+p.GetPosition().Y)*p.scale)-(offset.Y-320)),
 		)
 	}
 

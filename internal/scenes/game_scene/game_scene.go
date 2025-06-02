@@ -20,9 +20,9 @@ func (s *GameScene) Init() {
 	s.Camera.SetTarget(player)
 
 	for range 200 {
-		randX := rand.Float32() * 640
-		randY := rand.Float32() * 640
-		randZ := rand.Float32() * 3
+		randX := rand.Float64() * 640
+		randY := rand.Float64() * 640
+		randZ := rand.Float64() * 3
 
 		s.AddGameObject(star.NewStar(vectors.Vector3{
 			X: randX,

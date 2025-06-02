@@ -16,8 +16,8 @@ func (p *Player) Update() (err error) {
 		cos := math.Cos(p.rotation + math.Pi/2)
 
 		p.velocity.Add(vectors.Vector2{
-			X: float32(cos * leftAxis.Vertical * .1),
-			Y: float32(sin * leftAxis.Vertical * .1),
+			X: cos * leftAxis.Vertical * .1,
+			Y: sin * leftAxis.Vertical * .1,
 		})
 	}
 
