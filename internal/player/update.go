@@ -21,9 +21,7 @@ func (p *Player) Update() (err error) {
 		})
 	}
 
-	position := p.GetPosition()
-	position.Add(p.velocity)
-	p.SetPosition(position)
+	p.GetPosition().Add(p.velocity)
 
 	p.velocity.Mul(vectors.Vector2{
 		X: .99,
