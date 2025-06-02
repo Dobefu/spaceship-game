@@ -8,7 +8,7 @@ import (
 )
 
 func (p *Player) Update() (err error) {
-	leftAxis := input.GlobalInput.GetLeftStick()
+	leftAxis := input.GlobalInput.GetStickLeft()
 	p.rotation += leftAxis.Horizontal * .1
 
 	if leftAxis.Vertical != 0 {

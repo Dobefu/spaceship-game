@@ -7,13 +7,16 @@ var (
 
 type IInput interface {
 	Update()
-	GetLeftStick() Axis
+	GetStickLeft() Axis
+	GetButtonA() Button
 
-	updateLeftStick()
+	updateStickLeft()
+	updateButtonA()
 }
 
 type Input struct {
 	IInput
 
-	leftStick Axis
+	stickLeft Axis
+	buttonA   Button
 }

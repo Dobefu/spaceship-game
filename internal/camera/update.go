@@ -5,6 +5,6 @@ func (c *Camera) Update() {
 		return
 	}
 
-	c.position.X += (c.target.GetPosition().X - c.position.X) / 5
-	c.position.Y += (c.target.GetPosition().Y - c.position.Y) / 5
+	c.position.X += (c.target.GetPosition().X - c.position.X) / 10
+	c.position.Y += (c.target.GetPosition().Y - c.position.Y) / 10
 }

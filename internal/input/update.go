@@ -1,5 +1,6 @@
 package input
 
 func (i *Input) Update() {
-	i.updateLeftStick()
+	i.updateStickLeft()
+	i.updateButtonA()
 }
