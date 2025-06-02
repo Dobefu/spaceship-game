@@ -1,6 +1,6 @@
 package input
 
 type Axis struct {
-	Horizontal float32
-	Vertical   float32
+	Horizontal float64
+	Vertical   float64
 }

@@ -3,36 +3,22 @@ package player
 import (
 	"math"
 
+	"github.com/Dobefu/spaceship-game/internal/input"
 	"github.com/Dobefu/spaceship-game/internal/vectors"
-	"github.com/hajimehoshi/ebiten/v2"
 )
 
 func (p *Player) Update() (err error) {
-	if ebiten.IsKeyPressed(ebiten.KeyLeft) {
-		p.rotation -= .1
-	}
+	leftAxis := input.GlobalInput.GetLeftStick()
+	p.rotation += leftAxis.Horizontal * .1
 
-	if ebiten.IsKeyPressed(ebiten.KeyRight) {
-		p.rotation += .1
-	}
+	if leftAxis.Vertical != 0 {
+		sin := math.Sin(p.rotation + math.Pi/2)
+		cos := math.Cos(p.rotation + math.Pi/2)
 
-	if ebiten.IsKeyPressed(ebiten.KeyUp) || ebiten.IsKeyPressed(ebiten.KeyDown) {
-		sin := float32(math.Sin(p.rotation - math.Pi/2))
-		cos := float32(math.Cos(p.rotation - math.Pi/2))
-
-		if ebiten.IsKeyPressed(ebiten.KeyUp) {
-			p.velocity.Add(vectors.Vector2{
-				X: cos * .1,
-				Y: sin * .1,
-			})
-		}
-
-		if ebiten.IsKeyPressed(ebiten.KeyDown) {
-			p.velocity.Sub(vectors.Vector2{
-				X: cos * .1,
-				Y: sin * .1,
-			})
-		}
+		p.velocity.Add(vectors.Vector2{
+			X: float32(cos * leftAxis.Vertical * .1),
+			Y: float32(sin * leftAxis.Vertical * .1),
+		})
 	}
 
 	position := p.GetPosition()

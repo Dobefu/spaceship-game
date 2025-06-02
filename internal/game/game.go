@@ -23,11 +23,10 @@ type Game struct {
 	IGame
 
 	scene scene.IScene
-	input input.Input
 }
 
 func (g *Game) Update() (err error) {
-	g.input.Update()
+	input.GlobalInput.Update()
 
 	if g.scene == nil {
 		return nil
@@ -73,7 +72,6 @@ func Run() {
 	ebiten.SetWindowSize(gameHeight, gameWidth)
 	ebiten.SetWindowTitle("Spaceship Game")
 
-	game.input = input.GlobalInput
 	game.SetScene(&game_scene.GameScene{})
 
 	err := ebiten.RunGame(game)
