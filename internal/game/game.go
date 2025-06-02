@@ -44,9 +44,6 @@ func (g *Game) Update() (err error) {
 	camera := g.scene.GetCamera()
 	camera.Update()
 
-	// TODO: Not this.
-	g.scene.SetCamera(camera)
-
 	return nil
 }
 
