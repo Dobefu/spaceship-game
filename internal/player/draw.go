@@ -3,6 +3,7 @@ package player
 import (
 	"math"
 
+	"github.com/Dobefu/spaceship-game/internal/options"
 	"github.com/Dobefu/spaceship-game/internal/vectors"
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/vector"
@@ -10,6 +11,8 @@ import (
 
 func (p *Player) Draw(screen *ebiten.Image, offset vectors.Vector2) {
 	modelPath = vector.Path{}
+	gameHeight := float64(options.GlobalOptions.Height)
+	gameWidth := float64(options.GlobalOptions.Width)
 
 	for _, points := range modelPathPoints {
 		sin := math.Sin(p.rotation)
@@ -18,10 +21,9 @@ func (p *Player) Draw(screen *ebiten.Image, offset vectors.Vector2) {
 		x := (points.X - modelCenter.X)
 		y := (points.Y - modelCenter.Y)
 
-		// TODO: Get the actual canvas size instead of hardcoding it here.
 		modelPath.LineTo(
-			float32((((x*cos-y*sin)+p.GetPosition().X)*p.scale)-(offset.X-320)),
-			float32((((x*sin+y*cos)+p.GetPosition().Y)*p.scale)-(offset.Y-320)),
+			float32((((x*cos-y*sin)+p.GetPosition().X)*p.scale)-(offset.X-gameWidth/2)),
+			float32((((x*sin+y*cos)+p.GetPosition().Y)*p.scale)-(offset.Y-gameHeight/2)),
 		)
 	}
 

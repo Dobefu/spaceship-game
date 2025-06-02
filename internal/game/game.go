@@ -4,15 +4,14 @@ import (
 	"log"
 
 	"github.com/Dobefu/spaceship-game/internal/input"
+	"github.com/Dobefu/spaceship-game/internal/options"
 	"github.com/Dobefu/spaceship-game/internal/scene"
 	"github.com/Dobefu/spaceship-game/internal/scenes/game_scene"
 	"github.com/hajimehoshi/ebiten/v2"
 )
 
 var (
-	game       = &Game{}
-	gameHeight = 640
-	gameWidth  = 640
+	game = &Game{}
 )
 
 type IGame interface {
@@ -65,11 +64,11 @@ func (g *Game) Draw(screen *ebiten.Image) {
 }
 
 func (g *Game) Layout(outsideWidth, outsideHeight int) (screenWidth, screenHeight int) {
-	return gameHeight, gameWidth
+	return options.GlobalOptions.Height, options.GlobalOptions.Width
 }
 
 func Run() {
-	ebiten.SetWindowSize(gameHeight, gameWidth)
+	ebiten.SetWindowSize(options.GlobalOptions.Height, options.GlobalOptions.Width)
 	ebiten.SetWindowTitle("Spaceship Game")
 
 	game.SetScene(&game_scene.GameScene{})
