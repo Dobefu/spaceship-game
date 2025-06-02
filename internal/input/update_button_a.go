@@ -5,7 +5,7 @@ import (
 )
 
 func (i *Input) updateButtonA() {
-	if ebiten.IsKeyPressed(ebiten.KeySpace) {
+	if ebiten.IsKeyPressed(ebiten.KeySpace) || ebiten.IsGamepadButtonPressed(0, ebiten.GamepadButton0) {
 		if !i.buttonA.IsPressed {
 			i.buttonA.IsPressed = true
 		}

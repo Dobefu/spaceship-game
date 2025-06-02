@@ -2,7 +2,7 @@ package input
 
 var (
 	GlobalInput Input
-	deadzone    = .05
+	deadzone    = .1
 )
 
 type IInput interface {
