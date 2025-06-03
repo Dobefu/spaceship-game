@@ -4,6 +4,7 @@ import (
 	"image"
 	"image/color"
 
+	"github.com/Dobefu/spaceship-game/internal/bullet"
 	"github.com/Dobefu/spaceship-game/internal/game_object"
 	"github.com/Dobefu/spaceship-game/internal/options"
 	"github.com/Dobefu/spaceship-game/internal/vectors"
@@ -52,6 +53,8 @@ func init() {
 type Player struct {
 	game_object.GameObject
 
+	bulletPool *[]bullet.Bullet
+
 	velocity vectors.Vector2
 	scale    float64
 	rotation float64
@@ -60,8 +63,13 @@ type Player struct {
 	indices  []uint16
 }
 
-func NewPlayer(position vectors.Vector2) (player *Player) {
+func NewPlayer(
+	position vectors.Vector2,
+	bulletPool *[]bullet.Bullet,
+) (player *Player) {
 	player = &Player{
+		bulletPool: bulletPool,
+
 		velocity: vectors.Vector2{
 			X: 0,
 			Y: 0,

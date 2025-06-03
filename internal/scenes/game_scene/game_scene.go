@@ -3,6 +3,7 @@ package game_scene
 import (
 	"math/rand"
 
+	"github.com/Dobefu/spaceship-game/internal/bullet"
 	"github.com/Dobefu/spaceship-game/internal/particles/star"
 	"github.com/Dobefu/spaceship-game/internal/player"
 	"github.com/Dobefu/spaceship-game/internal/scene"
@@ -14,7 +15,16 @@ type GameScene struct {
 }
 
 func (s *GameScene) Init() {
-	player := player.NewPlayer(vectors.Vector2{X: 0, Y: 0})
+	var bulletPool []bullet.Bullet
+
+	for range 10 {
+		b := bullet.NewBullet(vectors.Vector2{X: 0, Y: 0})
+		s.AddGameObject(b)
+
+		bulletPool = append(bulletPool, *b)
+	}
+
+	player := player.NewPlayer(vectors.Vector2{X: 0, Y: 0}, &bulletPool)
 
 	s.AddGameObject(player)
 	s.Camera.SetTarget(player)
