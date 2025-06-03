@@ -9,10 +9,13 @@ type IGameObject interface {
 	Update() (err error)
 	Draw(screen *ebiten.Image, offset vectors.Vector2)
 	GetPosition() (position *vectors.Vector2)
+	SetIsActive(isActive bool)
+	GetIsActive() (isActive bool)
 }
 
 type GameObject struct {
 	IGameObject
 
 	position vectors.Vector2
+	isActive bool
 }

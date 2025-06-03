@@ -10,11 +10,6 @@ import (
 )
 
 func (b *Bullet) Draw(screen *ebiten.Image, offset vectors.Vector2) {
-	// TODO: Move this to the GameObject struct.
-	if !b.isActive {
-		return
-	}
-
 	vector.StrokeCircle(
 		screen,
 		float32(b.GetPosition().X-offset.X),

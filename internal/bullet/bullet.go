@@ -7,13 +7,12 @@ import (
 
 type Bullet struct {
 	game_object.GameObject
-
-	isActive bool
 }
 
 func NewBullet(position vectors.Vector2) (bullet *Bullet) {
-	bullet = &Bullet{isActive: false}
+	bullet = &Bullet{}
 	bullet.SetPosition(position)
+	bullet.SetIsActive(false)
 
 	return bullet
 }

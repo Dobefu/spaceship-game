@@ -34,6 +34,10 @@ func (g *Game) Update() (err error) {
 	gameObjects := g.scene.GetGameObjects()
 
 	for _, gameObject := range gameObjects {
+		if !gameObject.GetIsActive() {
+			continue
+		}
+
 		err = gameObject.Update()
 
 		if err != nil {
@@ -56,6 +60,10 @@ func (g *Game) Draw(screen *ebiten.Image) {
 	camera := g.scene.GetCamera()
 
 	for _, gameObject := range gameObjects {
+		if !gameObject.GetIsActive() {
+			continue
+		}
+
 		gameObject.Draw(screen, camera.GetPosition())
 	}
 }

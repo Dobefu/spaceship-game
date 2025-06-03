@@ -79,6 +79,7 @@ func NewPlayer(
 	}
 
 	player.SetPosition(position)
+	player.SetIsActive(true)
 
 	return player
 }

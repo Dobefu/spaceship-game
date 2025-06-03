@@ -17,10 +17,14 @@ type Star struct {
 	position vectors.Vector3
 }
 
-func NewStar(position vectors.Vector3) *Star {
-	return &Star{
+func NewStar(position vectors.Vector3) (star *Star) {
+	star = &Star{
 		position: position,
 	}
+
+	star.SetIsActive(true)
+
+	return star
 }
 
 func (s *Star) Update() (err error) {
