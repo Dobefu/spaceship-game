@@ -5,6 +5,7 @@ type IVector2 interface {
 	Sub(vec Vector2)
 	Mul(vec Vector2)
 	Div(vec Vector2)
+	Normalize() (vec Vector2)
 }
 
 type Vector2 struct {
@@ -32,4 +33,15 @@ func (v *Vector2) Mul(vec Vector2) {
 func (v *Vector2) Div(vec Vector2) {
 	v.X /= vec.X
 	v.Y /= vec.Y
+}
+
+func (v *Vector2) Normalize() (vec Vector2) {
+	vec = *v
+
+	magnitude := v.X*v.X + v.Y*v.Y
+
+	vec.X /= magnitude
+	vec.Y /= magnitude
+
+	return vec
 }
