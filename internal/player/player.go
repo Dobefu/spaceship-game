@@ -17,6 +17,8 @@ var (
 	modelPathPoints []vectors.Vector2
 	modelCenter     vectors.Vector2
 
+	blackImage    = ebiten.NewImage(3, 3)
+	blackSubImage = blackImage.SubImage(image.Rect(1, 1, 2, 2)).(*ebiten.Image)
 	whiteImage    = ebiten.NewImage(3, 3)
 	whiteSubImage = whiteImage.SubImage(image.Rect(1, 1, 2, 2)).(*ebiten.Image)
 
@@ -40,6 +42,7 @@ func init() {
 	modelCenter.X /= float64(len(modelPathPoints))
 	modelCenter.Y /= float64(len(modelPathPoints))
 
+	blackImage.Fill(color.Black)
 	whiteImage.Fill(color.White)
 	strokeOptions = &vector.StrokeOptions{
 		Width: globals.GlobalValues.OutlineWidth,
@@ -56,7 +59,7 @@ type Player struct {
 	bulletPool    *[]*bullet.Bullet
 	shootCooldown float64
 
-	velocity vectors.Vector2
+	velocity vectors.Vector3
 	scale    float64
 	rotation float64
 
@@ -65,15 +68,16 @@ type Player struct {
 }
 
 func NewPlayer(
-	position vectors.Vector2,
+	position vectors.Vector3,
 	bulletPool *[]*bullet.Bullet,
 ) (player *Player) {
 	player = &Player{
 		bulletPool: bulletPool,
 
-		velocity: vectors.Vector2{
+		velocity: vectors.Vector3{
 			X: 0,
 			Y: 0,
+			Z: 0,
 		},
 		scale:    1,
 		rotation: 0,

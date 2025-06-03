@@ -6,7 +6,7 @@ import (
 
 func (b *Bullet) Update() (err error) {
 	camera := globals.GlobalValues.Game.GetScene().GetCamera()
-	screenPos := camera.WorldToScreenPosition(*b.GetPosition())
+	screenPos := camera.WorldToScreenPosition(b.GetPosition().ToVector2())
 
 	// If the bullet is off-screen, deactivate it.
 	if camera.IsPositionWithinBounds(screenPos, b.size/2) {
@@ -14,7 +14,9 @@ func (b *Bullet) Update() (err error) {
 		return nil
 	}
 
-	b.GetPosition().Add(b.velocity)
+	position := b.GetPosition()
+	position.Add(b.velocity)
+	b.SetPosition(position)
 
 	return nil
 }

@@ -12,6 +12,7 @@ import (
 func (p *Player) Draw(screen *ebiten.Image) {
 	modelPath = vector.Path{}
 	camera := globals.GlobalValues.Game.GetScene().GetCamera()
+	position := p.GetPosition()
 
 	for _, points := range modelPathPoints {
 		sin := math.Sin(p.rotation)
@@ -21,8 +22,8 @@ func (p *Player) Draw(screen *ebiten.Image) {
 		y := (points.Y - modelCenter.Y)
 
 		screenPos := camera.WorldToScreenPosition(vectors.Vector2{
-			X: ((x*cos - y*sin) + p.GetPosition().X) * p.scale,
-			Y: ((x*sin + y*cos) + p.GetPosition().Y) * p.scale,
+			X: ((x*cos - y*sin) + position.X) * p.scale,
+			Y: ((x*sin + y*cos) + position.Y) * p.scale,
 		})
 
 		modelPath.LineTo(
@@ -33,6 +34,8 @@ func (p *Player) Draw(screen *ebiten.Image) {
 
 	modelPath.Close()
 
+	p.vertices, p.indices = modelPath.AppendVerticesAndIndicesForFilling(p.vertices[:0], p.indices[:0])
+	screen.DrawTriangles(p.vertices, p.indices, blackSubImage, drawTrianglesOptions)
 	p.vertices, p.indices = modelPath.AppendVerticesAndIndicesForStroke(p.vertices[:0], p.indices[:0], strokeOptions)
 	screen.DrawTriangles(p.vertices, p.indices, whiteSubImage, drawTrianglesOptions)
 }

@@ -6,4 +6,5 @@ type Scene interface {
 	AddGameObject(gameObject GameObject)
 	SetCamera(camera Camera)
 	GetCamera() (camera Camera)
+	InvalidateDepthOrder()
 }

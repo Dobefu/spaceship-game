@@ -13,15 +13,11 @@ import (
 
 type Star struct {
 	game_object.GameObject
-
-	position vectors.Vector3
 }
 
 func NewStar(position vectors.Vector3) (star *Star) {
-	star = &Star{
-		position: position,
-	}
-
+	star = &Star{}
+	star.SetPosition(position)
 	star.SetIsActive(true)
 
 	return star
@@ -37,17 +33,19 @@ func (s *Star) Draw(screen *ebiten.Image) {
 	gameHeight := float64(globals.GlobalValues.Height)
 	gameWidth := float64(globals.GlobalValues.Width)
 
+	position := s.GetPosition()
+
 	screenPos := camera.WorldToScreenPosition(vectors.Vector2{
-		X: s.position.X,
-		Y: s.position.Y,
+		X: position.X,
+		Y: position.Y,
 	})
 
 	vector.DrawFilledRect(
 		screen,
-		float32(math.Mod(math.Mod(screenPos.X, gameWidth)+gameWidth, gameWidth)*s.position.Z),
-		float32(math.Mod(math.Mod(screenPos.Y, gameHeight)+gameHeight, gameHeight)*s.position.Z),
-		float32(s.position.Z),
-		float32(s.position.Z),
+		float32(math.Mod(math.Mod(screenPos.X, gameWidth)+gameWidth, gameWidth)*position.Z),
+		float32(math.Mod(math.Mod(screenPos.Y, gameHeight)+gameHeight, gameHeight)*position.Z),
+		float32(position.Z),
+		float32(position.Z),
 		color.White,
 		false,
 	)

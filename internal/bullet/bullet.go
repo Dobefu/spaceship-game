@@ -11,13 +11,13 @@ type Bullet struct {
 	game_object.GameObject
 
 	size     float64
-	velocity vectors.Vector2
+	velocity vectors.Vector3
 }
 
 func NewBullet() (bullet *Bullet) {
 	bullet = &Bullet{
 		size:     5,
-		velocity: vectors.Vector2{},
+		velocity: vectors.Vector3{},
 	}
 
 	bullet.SetIsActive(false)

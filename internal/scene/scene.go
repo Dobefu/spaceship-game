@@ -7,6 +7,7 @@ import (
 type Scene struct {
 	interfaces.Scene
 
-	Camera      interfaces.Camera
-	gameObjects []interfaces.GameObject
+	Camera            interfaces.Camera
+	gameObjects       []interfaces.GameObject
+	isDepthOrderDirty bool
 }

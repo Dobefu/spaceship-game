@@ -13,14 +13,15 @@ func (p *Player) Shoot() {
 			continue
 		}
 
-		from := vectors.Vector2{
+		from := vectors.Vector3{
 			X: math.Cos(p.rotation - math.Pi/2),
 			Y: math.Sin(p.rotation - math.Pi/2),
+			Z: 0,
 		}
 
 		from.Normalize()
-		from.Mul(vectors.Vector2{X: 50, Y: 50})
-		from.Add(*p.GetPosition())
+		from.Mul(vectors.Vector3{X: 50, Y: 50, Z: 0})
+		from.Add(p.GetPosition())
 
 		b.Fire(from, p.rotation)
 		break

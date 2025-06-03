@@ -6,12 +6,13 @@ import (
 	"github.com/Dobefu/spaceship-game/internal/vectors"
 )
 
-func (b *Bullet) Fire(from vectors.Vector2, angle float64) {
+func (b *Bullet) Fire(from vectors.Vector3, angle float64) {
 	b.SetIsActive(true)
 	b.SetPosition(from)
 
-	b.velocity = vectors.Vector2{
+	b.velocity = vectors.Vector3{
 		X: -math.Cos(angle+math.Pi/2) * 15,
 		Y: -math.Sin(angle+math.Pi/2) * 15,
+		Z: 0,
 	}
 }

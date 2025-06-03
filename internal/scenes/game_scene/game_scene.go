@@ -24,7 +24,7 @@ func (s *GameScene) Init() {
 		bulletPool = append(bulletPool, b)
 	}
 
-	player := player.NewPlayer(vectors.Vector2{X: 0, Y: 0}, &bulletPool)
+	player := player.NewPlayer(vectors.Vector3{X: 0, Y: 0, Z: 1000}, &bulletPool)
 
 	s.AddGameObject(player)
 	s.Camera.SetTarget(player)

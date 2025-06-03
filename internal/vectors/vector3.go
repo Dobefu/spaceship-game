@@ -6,6 +6,7 @@ type IVector3 interface {
 	Mul(vec Vector3)
 	Div(vec Vector3)
 	Normalize() (vec Vector3)
+	ToVector2() Vector2
 }
 
 type Vector3 struct {
@@ -50,4 +51,11 @@ func (v *Vector3) Normalize() (vec Vector3) {
 	vec.Z /= magnitude
 
 	return vec
+}
+
+func (v Vector3) ToVector2() Vector2 {
+	return Vector2{
+		X: v.X,
+		Y: v.Y,
+	}
 }

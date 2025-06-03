@@ -6,4 +6,5 @@ import (
 
 func (s *Scene) AddGameObject(gameObject interfaces.GameObject) {
 	s.gameObjects = append(s.gameObjects, gameObject)
+	s.InvalidateDepthOrder()
 }

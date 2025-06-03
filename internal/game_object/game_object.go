@@ -8,6 +8,6 @@ import (
 type GameObject struct {
 	interfaces.GameObject
 
-	position vectors.Vector2
+	position vectors.Vector3
 	isActive bool
 }

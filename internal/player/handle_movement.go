@@ -15,17 +15,21 @@ func (p *Player) HandleMovement() {
 		sin := math.Sin(p.rotation + math.Pi/2)
 		cos := math.Cos(p.rotation + math.Pi/2)
 
-		p.velocity.Add(vectors.Vector2{
+		p.velocity.Add(vectors.Vector3{
 			X: cos * leftAxis.Vertical * .1,
 			Y: sin * leftAxis.Vertical * .1,
+			Z: 0,
 		})
 	}
 
-	p.GetPosition().Add(p.velocity)
+	position := p.GetPosition()
+	position.Add(p.velocity)
+	p.SetPosition(position)
 
-	p.velocity.Mul(vectors.Vector2{
+	p.velocity.Mul(vectors.Vector3{
 		X: .99,
 		Y: .99,
+		Z: .99,
 	})
 
 }
