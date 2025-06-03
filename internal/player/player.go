@@ -5,6 +5,7 @@ import (
 	"image/color"
 
 	"github.com/Dobefu/spaceship-game/internal/game_object"
+	"github.com/Dobefu/spaceship-game/internal/options"
 	"github.com/Dobefu/spaceship-game/internal/vectors"
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/vector"
@@ -40,7 +41,7 @@ func init() {
 
 	whiteImage.Fill(color.White)
 	strokeOptions = &vector.StrokeOptions{
-		Width: 2,
+		Width: options.GlobalOptions.OutlineWidth,
 	}
 
 	drawTrianglesOptions = &ebiten.DrawTrianglesOptions{
