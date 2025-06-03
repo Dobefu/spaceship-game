@@ -13,7 +13,7 @@ func (b *Bullet) Draw(screen *ebiten.Image, offset vectors.Vector2) {
 	vector.StrokeCircle(
 		screen,
 		float32(b.GetPosition().X-offset.X),
-		float32(b.GetPosition().X-offset.Y),
+		float32(b.GetPosition().Y-offset.Y),
 		5,
 		options.GlobalOptions.OutlineWidth,
 		color.White,

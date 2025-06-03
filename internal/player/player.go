@@ -53,7 +53,7 @@ func init() {
 type Player struct {
 	game_object.GameObject
 
-	bulletPool *[]bullet.Bullet
+	bulletPool *[]*bullet.Bullet
 
 	velocity vectors.Vector2
 	scale    float64
@@ -65,7 +65,7 @@ type Player struct {
 
 func NewPlayer(
 	position vectors.Vector2,
-	bulletPool *[]bullet.Bullet,
+	bulletPool *[]*bullet.Bullet,
 ) (player *Player) {
 	player = &Player{
 		bulletPool: bulletPool,

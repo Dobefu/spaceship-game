@@ -5,13 +5,22 @@ import (
 	"github.com/Dobefu/spaceship-game/internal/vectors"
 )
 
-type Bullet struct {
-	game_object.GameObject
+type IBullet interface {
+	Fire(from vectors.Vector2, angle float64)
 }
 
-func NewBullet(position vectors.Vector2) (bullet *Bullet) {
-	bullet = &Bullet{}
-	bullet.SetPosition(position)
+type Bullet struct {
+	IBullet
+	game_object.GameObject
+
+	velocity vectors.Vector2
+}
+
+func NewBullet() (bullet *Bullet) {
+	bullet = &Bullet{
+		velocity: vectors.Vector2{},
+	}
+
 	bullet.SetIsActive(false)
 
 	return bullet

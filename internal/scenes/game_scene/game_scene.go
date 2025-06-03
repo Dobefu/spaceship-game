@@ -15,13 +15,13 @@ type GameScene struct {
 }
 
 func (s *GameScene) Init() {
-	var bulletPool []bullet.Bullet
+	var bulletPool []*bullet.Bullet
 
 	for range 10 {
-		b := bullet.NewBullet(vectors.Vector2{X: 0, Y: 0})
+		b := bullet.NewBullet()
 		s.AddGameObject(b)
 
-		bulletPool = append(bulletPool, *b)
+		bulletPool = append(bulletPool, b)
 	}
 
 	player := player.NewPlayer(vectors.Vector2{X: 0, Y: 0}, &bulletPool)
