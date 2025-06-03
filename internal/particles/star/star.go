@@ -27,7 +27,7 @@ func NewStar(position vectors.Vector3) (star *Star) {
 	return star
 }
 
-func (s *Star) Update() (err error) {
+func (s *Star) Update(offset vectors.Vector2) (err error) {
 	return nil
 }
 

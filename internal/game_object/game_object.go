@@ -6,7 +6,7 @@ import (
 )
 
 type IGameObject interface {
-	Update() (err error)
+	Update(offset vectors.Vector2) (err error)
 	Draw(screen *ebiten.Image, offset vectors.Vector2)
 	GetPosition() (position *vectors.Vector2)
 	SetIsActive(isActive bool)

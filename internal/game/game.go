@@ -38,7 +38,8 @@ func (g *Game) Update() (err error) {
 			continue
 		}
 
-		err = gameObject.Update()
+		camera := g.scene.GetCamera()
+		err = gameObject.Update(camera.GetPosition())
 
 		if err != nil {
 			return err
