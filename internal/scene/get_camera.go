@@ -1,7 +1,9 @@
 package scene
 
-import "github.com/Dobefu/spaceship-game/internal/camera"
+import (
+	"github.com/Dobefu/spaceship-game/internal/interfaces"
+)
 
-func (s *Scene) GetCamera() (camera *camera.Camera) {
-	return &s.Camera
+func (s *Scene) GetCamera() (camera interfaces.Camera) {
+	return s.Camera
 }

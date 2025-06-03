@@ -1,18 +1,18 @@
 package bullet
 
 import (
-	"github.com/Dobefu/spaceship-game/internal/options"
-	"github.com/Dobefu/spaceship-game/internal/vectors"
+	"github.com/Dobefu/spaceship-game/internal/globals"
 )
 
-func (b *Bullet) Update(offset vectors.Vector2) (err error) {
-	gameHeight := float64(options.GlobalOptions.Height)
-	gameWidth := float64(options.GlobalOptions.Width)
-	posX := b.GetPosition().X - offset.X
-	posY := b.GetPosition().Y - offset.Y
+func (b *Bullet) Update() (err error) {
+	camera := globals.GlobalValues.Game.GetScene().GetCamera()
+	screenPos := camera.WorldToScreenPosition(*b.GetPosition())
+
+	gameHeight := float64(globals.GlobalValues.Height)
+	gameWidth := float64(globals.GlobalValues.Width)
 
 	// If the bullet is off-screen, deactivate it.
-	if posX < -b.size/2 || posX > gameWidth+b.size/2 || posY < -b.size/2 || posY > gameHeight+b.size/2 {
+	if screenPos.X < -b.size/2 || screenPos.X > gameWidth+b.size/2 || screenPos.Y < -b.size/2 || screenPos.Y > gameHeight+b.size/2 {
 		b.SetIsActive(false)
 		return nil
 	}

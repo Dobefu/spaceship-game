@@ -2,15 +2,12 @@ package bullet
 
 import (
 	"github.com/Dobefu/spaceship-game/internal/game_object"
+	"github.com/Dobefu/spaceship-game/internal/interfaces"
 	"github.com/Dobefu/spaceship-game/internal/vectors"
 )
 
-type IBullet interface {
-	Fire(from vectors.Vector2, angle float64)
-}
-
 type Bullet struct {
-	IBullet
+	interfaces.Bullet
 	game_object.GameObject
 
 	size     float64

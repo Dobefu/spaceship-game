@@ -1,7 +1,9 @@
 package scene
 
-import "github.com/Dobefu/spaceship-game/internal/game_object"
+import (
+	"github.com/Dobefu/spaceship-game/internal/interfaces"
+)
 
-func (s *Scene) GetGameObjects() []game_object.IGameObject {
+func (s *Scene) GetGameObjects() []interfaces.GameObject {
 	return s.gameObjects
 }

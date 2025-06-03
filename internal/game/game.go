@@ -3,25 +3,17 @@ package game
 import (
 	"log"
 
+	"github.com/Dobefu/spaceship-game/internal/globals"
 	"github.com/Dobefu/spaceship-game/internal/input"
-	"github.com/Dobefu/spaceship-game/internal/options"
-	"github.com/Dobefu/spaceship-game/internal/scene"
+	"github.com/Dobefu/spaceship-game/internal/interfaces"
 	"github.com/Dobefu/spaceship-game/internal/scenes/game_scene"
 	"github.com/hajimehoshi/ebiten/v2"
 )
 
-var (
-	game = &Game{}
-)
-
-type IGame interface {
-	SetScene(scene *scene.IScene)
-}
-
 type Game struct {
-	IGame
+	interfaces.Game
 
-	scene scene.IScene
+	scene interfaces.Scene
 }
 
 func (g *Game) Update() (err error) {
@@ -38,8 +30,7 @@ func (g *Game) Update() (err error) {
 			continue
 		}
 
-		camera := g.scene.GetCamera()
-		err = gameObject.Update(camera.GetPosition())
+		err = gameObject.Update()
 
 		if err != nil {
 			return err
@@ -58,28 +49,28 @@ func (g *Game) Draw(screen *ebiten.Image) {
 	}
 
 	gameObjects := g.scene.GetGameObjects()
-	camera := g.scene.GetCamera()
 
 	for _, gameObject := range gameObjects {
 		if !gameObject.GetIsActive() {
 			continue
 		}
 
-		gameObject.Draw(screen, camera.GetPosition())
+		gameObject.Draw(screen)
 	}
 }
 
 func (g *Game) Layout(outsideWidth, outsideHeight int) (screenWidth, screenHeight int) {
-	return options.GlobalOptions.Height, options.GlobalOptions.Width
+	return globals.GlobalValues.Height, globals.GlobalValues.Width
 }
 
 func Run() {
-	ebiten.SetWindowSize(options.GlobalOptions.Height, options.GlobalOptions.Width)
+	ebiten.SetWindowSize(globals.GlobalValues.Height, globals.GlobalValues.Width)
 	ebiten.SetWindowTitle("Spaceship Game")
 
-	game.SetScene(&game_scene.GameScene{})
+	globals.GlobalValues.Game = &Game{}
+	globals.GlobalValues.Game.SetScene(&game_scene.GameScene{})
 
-	err := ebiten.RunGame(game)
+	err := ebiten.RunGame(globals.GlobalValues.Game)
 
 	if err != nil {
 		log.Fatal(err)

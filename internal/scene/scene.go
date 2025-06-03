@@ -1,21 +1,12 @@
 package scene
 
 import (
-	"github.com/Dobefu/spaceship-game/internal/camera"
-	"github.com/Dobefu/spaceship-game/internal/game_object"
+	"github.com/Dobefu/spaceship-game/internal/interfaces"
 )
 
-type IScene interface {
-	Init()
-	GetGameObjects() []game_object.IGameObject
-	AddGameObject(gameObject game_object.IGameObject)
-	SetCamera(camera camera.Camera)
-	GetCamera() (camera *camera.Camera)
-}
-
 type Scene struct {
-	IScene
+	interfaces.Scene
 
-	Camera      camera.Camera
-	gameObjects []game_object.IGameObject
+	Camera      interfaces.Camera
+	gameObjects []interfaces.GameObject
 }

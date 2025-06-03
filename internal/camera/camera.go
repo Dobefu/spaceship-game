@@ -1,19 +1,13 @@
 package camera
 
 import (
-	"github.com/Dobefu/spaceship-game/internal/game_object"
+	"github.com/Dobefu/spaceship-game/internal/interfaces"
 	"github.com/Dobefu/spaceship-game/internal/vectors"
 )
 
-type ICamera interface {
-	SetTarget(target game_object.IGameObject)
-	GetPosition() (position vectors.IVector2)
-	Update()
-}
-
 type Camera struct {
-	ICamera
+	interfaces.Camera
 
 	position vectors.Vector2
-	target   game_object.IGameObject
+	target   interfaces.GameObject
 }

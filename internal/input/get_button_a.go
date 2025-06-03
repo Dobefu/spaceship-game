@@ -1,5 +1,9 @@
 package input
 
-func (i *Input) GetButtonA() Button {
+import (
+	"github.com/Dobefu/spaceship-game/internal/interfaces"
+)
+
+func (i *Input) GetButtonA() interfaces.Button {
 	return i.buttonA
 }

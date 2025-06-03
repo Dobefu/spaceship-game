@@ -1,22 +1,17 @@
 package input
 
+import (
+	"github.com/Dobefu/spaceship-game/internal/interfaces"
+)
+
 var (
 	GlobalInput Input
 	deadzone    = .1
 )
 
-type IInput interface {
-	Update()
-	GetStickLeft() Axis
-	GetButtonA() Button
-
-	updateStickLeft()
-	updateButtonA()
-}
-
 type Input struct {
-	IInput
+	interfaces.Input
 
-	stickLeft Axis
-	buttonA   Button
+	stickLeft interfaces.Axis
+	buttonA   interfaces.Button
 }
