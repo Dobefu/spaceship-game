@@ -2,8 +2,8 @@ package player
 
 import (
 	"math"
-	"math/rand"
 
+	"github.com/Dobefu/spaceship-game/internal/fastrand"
 	"github.com/Dobefu/spaceship-game/internal/globals"
 	"github.com/Dobefu/spaceship-game/internal/input"
 	"github.com/Dobefu/spaceship-game/internal/vectors"
@@ -14,6 +14,7 @@ import (
 var (
 	fireModelPath       vector.Path
 	fireModelPathPoints []vectors.Vector2
+	rand                = fastrand.NewRand()
 )
 
 func init() {
@@ -50,8 +51,11 @@ func (p *Player) drawFireModel(screen *ebiten.Image) {
 		sin := math.Sin(p.rotation)
 		cos := math.Cos(p.rotation)
 
-		x := ((points.X - playerModelCenter.X) * p.fireScale) * (rand.Float64()*.1 + 1)
-		y := ((points.Y-8)*p.fireScale + 8) * (rand.Float64()*.2 + 1)
+		randX := float64(rand.Next()>>24)/2550 + 1
+		randY := float64(rand.Next()>>24)/1270 + 1
+
+		x := ((points.X - playerModelCenter.X) * p.fireScale) * randX
+		y := ((points.Y-8)*p.fireScale + 8) * randY
 
 		screenPos := camera.WorldToScreenPosition(vectors.Vector2{
 			X: ((x*cos - y*sin) + position.X) * p.scale,
