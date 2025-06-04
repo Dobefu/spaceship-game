@@ -14,6 +14,8 @@ var (
 	blackSubImage = blackImage.SubImage(image.Rect(1, 1, 2, 2)).(*ebiten.Image)
 	whiteImage    = ebiten.NewImage(3, 3)
 	whiteSubImage = whiteImage.SubImage(image.Rect(1, 1, 2, 2)).(*ebiten.Image)
+	redImage      = ebiten.NewImage(3, 3)
+	redSubImage   = redImage.SubImage(image.Rect(1, 1, 2, 2)).(*ebiten.Image)
 
 	strokeOptions        *vector.StrokeOptions
 	drawTrianglesOptions *ebiten.DrawTrianglesOptions
@@ -22,6 +24,7 @@ var (
 func init() {
 	blackImage.Fill(color.Black)
 	whiteImage.Fill(color.White)
+	redImage.Fill(color.RGBA{R: 255, G: 150, B: 150, A: 255})
 	strokeOptions = &vector.StrokeOptions{
 		Width: globals.GlobalValues.OutlineWidth,
 	}

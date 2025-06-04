@@ -67,5 +67,5 @@ func (p *Player) drawFireModel(screen *ebiten.Image) {
 	fireModelPath.Close()
 
 	p.vertices, p.indices = fireModelPath.AppendVerticesAndIndicesForStroke(p.vertices[:0], p.indices[:0], strokeOptions)
-	screen.DrawTriangles(p.vertices, p.indices, whiteSubImage, drawTrianglesOptions)
+	screen.DrawTriangles(p.vertices, p.indices, redSubImage, drawTrianglesOptions)
 }
