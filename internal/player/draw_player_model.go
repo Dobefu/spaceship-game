@@ -58,7 +58,7 @@ func (p *Player) drawPlayerModel(screen *ebiten.Image) {
 	playerModelPath.Close()
 
 	p.vertices, p.indices = playerModelPath.AppendVerticesAndIndicesForFilling(p.vertices[:0], p.indices[:0])
-	screen.DrawTriangles(p.vertices, p.indices, blackSubImage, drawTrianglesOptions)
+	screen.DrawTriangles(p.vertices, p.indices, blackImage, drawTrianglesOptions)
 	p.vertices, p.indices = playerModelPath.AppendVerticesAndIndicesForStroke(p.vertices[:0], p.indices[:0], strokeOptions)
-	screen.DrawTriangles(p.vertices, p.indices, whiteSubImage, drawTrianglesOptions)
+	screen.DrawTriangles(p.vertices, p.indices, whiteImage, drawTrianglesOptions)
 }

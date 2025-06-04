@@ -1,7 +1,6 @@
 package player
 
 import (
-	"image"
 	"image/color"
 
 	"github.com/Dobefu/spaceship-game/internal/globals"
@@ -10,21 +9,18 @@ import (
 )
 
 var (
-	blackImage    = ebiten.NewImage(3, 3)
-	blackSubImage = blackImage.SubImage(image.Rect(1, 1, 2, 2)).(*ebiten.Image)
-	whiteImage    = ebiten.NewImage(3, 3)
-	whiteSubImage = whiteImage.SubImage(image.Rect(1, 1, 2, 2)).(*ebiten.Image)
-	redImage      = ebiten.NewImage(3, 3)
-	redSubImage   = redImage.SubImage(image.Rect(1, 1, 2, 2)).(*ebiten.Image)
+	blackImage = ebiten.NewImage(1, 1)
+	whiteImage = ebiten.NewImage(1, 1)
+	redImage   = ebiten.NewImage(1, 1)
 
 	strokeOptions        *vector.StrokeOptions
 	drawTrianglesOptions *ebiten.DrawTrianglesOptions
 )
 
 func init() {
-	blackImage.Fill(color.Black)
-	whiteImage.Fill(color.White)
-	redImage.Fill(color.RGBA{R: 255, G: 150, B: 150, A: 255})
+	blackImage.Set(0, 0, color.Black)
+	whiteImage.Set(0, 0, color.White)
+	redImage.Set(0, 0, color.RGBA{R: 255, G: 150, B: 150, A: 255})
 	strokeOptions = &vector.StrokeOptions{
 		Width: globals.GlobalValues.OutlineWidth,
 	}
