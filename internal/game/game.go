@@ -7,6 +7,7 @@ import (
 	"github.com/Dobefu/spaceship-game/internal/input"
 	"github.com/Dobefu/spaceship-game/internal/interfaces"
 	"github.com/Dobefu/spaceship-game/internal/scenes/game_scene"
+	"github.com/Dobefu/spaceship-game/internal/shaders"
 	"github.com/hajimehoshi/ebiten/v2"
 )
 
@@ -57,6 +58,19 @@ func (g *Game) Draw(screen *ebiten.Image) {
 
 		gameObject.Draw(screen)
 	}
+}
+
+func (g *Game) DrawFinalScreen(screen ebiten.FinalScreen, offscreen *ebiten.Image, geoM ebiten.GeoM) {
+	shaderOptions := &ebiten.DrawRectShaderOptions{}
+	shaderOptions.Images[0] = offscreen
+	shaderOptions.GeoM = geoM
+
+	screen.DrawRectShader(
+		globals.GlobalValues.Width,
+		globals.GlobalValues.Height,
+		shaders.Bloom,
+		shaderOptions,
+	)
 }
 
 func (g *Game) Layout(outsideWidth, outsideHeight int) (screenWidth, screenHeight int) {
