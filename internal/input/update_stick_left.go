@@ -13,22 +13,26 @@ func (i *Input) updateStickLeft() {
 
 	if ebiten.IsKeyPressed(ebiten.KeyLeft) ||
 		ebiten.IsKeyPressed(ebiten.KeyA) ||
+		ebiten.IsKeyPressed(ebiten.KeyH) ||
 		ebiten.IsGamepadButtonPressed(0, ebiten.GamepadButton14) {
 		i.stickLeft.Horizontal -= 1
 	}
 
 	if ebiten.IsKeyPressed(ebiten.KeyRight) ||
 		ebiten.IsKeyPressed(ebiten.KeyD) ||
+		ebiten.IsKeyPressed(ebiten.KeyL) ||
 		ebiten.IsGamepadButtonPressed(0, ebiten.GamepadButton15) {
 		i.stickLeft.Horizontal += 1
 	}
 
 	if ebiten.IsKeyPressed(ebiten.KeyUp) ||
-		ebiten.IsKeyPressed(ebiten.KeyW) {
+		ebiten.IsKeyPressed(ebiten.KeyW) ||
+		ebiten.IsKeyPressed(ebiten.KeyK) {
 		i.stickLeft.Vertical -= 1
 	}
 
 	if ebiten.IsKeyPressed(ebiten.KeyDown) ||
+		ebiten.IsKeyPressed(ebiten.KeyJ) ||
 		ebiten.IsKeyPressed(ebiten.KeyS) {
 		i.stickLeft.Vertical += 1
 	}
