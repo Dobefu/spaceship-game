@@ -23,7 +23,7 @@ func (p *Player) Shoot() {
 		from.Mul(vectors.Vector3{X: 50, Y: 50, Z: 0})
 		from.Add(p.GetPosition())
 
-		b.Fire(from, p.rotation)
+		b.Fire(from, p.rotation, p.velocity)
 		break
 	}
 }
