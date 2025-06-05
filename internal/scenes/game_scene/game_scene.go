@@ -4,6 +4,7 @@ import (
 	"math/rand"
 
 	"github.com/Dobefu/spaceship-game/internal/bullet"
+	"github.com/Dobefu/spaceship-game/internal/particles/smoke"
 	"github.com/Dobefu/spaceship-game/internal/particles/star"
 	"github.com/Dobefu/spaceship-game/internal/player"
 	"github.com/Dobefu/spaceship-game/internal/scene"
@@ -24,7 +25,16 @@ func (s *GameScene) Init() {
 		bulletPool = append(bulletPool, b)
 	}
 
-	player := player.NewPlayer(vectors.Vector3{X: 0, Y: 0, Z: 1000}, &bulletPool)
+	var smokeParticles []*smoke.Smoke
+
+	for range 60 {
+		particle := smoke.NewSmoke()
+		s.AddGameObject(particle)
+
+		smokeParticles = append(smokeParticles, particle)
+	}
+
+	player := player.NewPlayer(vectors.Vector3{X: 0, Y: 0, Z: 1000}, &bulletPool, &smokeParticles)
 
 	s.AddGameObject(player)
 	s.Camera.SetTarget(player)

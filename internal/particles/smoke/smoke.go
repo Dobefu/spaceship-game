@@ -15,6 +15,7 @@ type Smoke struct {
 	game_object.GameObject
 
 	scale    float32
+	shade    uint8
 	velocity vectors.Vector3
 }
 
@@ -27,6 +28,10 @@ func NewSmoke() (smoke *Smoke) {
 
 func (s *Smoke) SetScale(scale float32) {
 	s.scale = scale
+}
+
+func (s *Smoke) SetShade(shade uint8) {
+	s.shade = shade
 }
 
 func (s *Smoke) SetVelocity(velocity vectors.Vector3) {
@@ -72,7 +77,7 @@ func (s *Smoke) Draw(screen *ebiten.Image) {
 		float32(screenPos.Y),
 		s.scale,
 		globals.GlobalValues.OutlineWidth,
-		color.Gray{5},
+		color.Gray{s.shade},
 		false,
 	)
 }

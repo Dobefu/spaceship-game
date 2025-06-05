@@ -3,6 +3,7 @@ package player
 import (
 	"github.com/Dobefu/spaceship-game/internal/bullet"
 	"github.com/Dobefu/spaceship-game/internal/game_object"
+	"github.com/Dobefu/spaceship-game/internal/particles/smoke"
 	"github.com/Dobefu/spaceship-game/internal/vectors"
 	"github.com/hajimehoshi/ebiten/v2"
 )
@@ -13,7 +14,8 @@ type Player struct {
 	bulletPool    *[]*bullet.Bullet
 	shootCooldown float64
 
-	fireScale float64
+	fireScale      float64
+	smokeParticles *[]*smoke.Smoke
 
 	velocity vectors.Vector3
 	scale    float64
@@ -26,9 +28,11 @@ type Player struct {
 func NewPlayer(
 	position vectors.Vector3,
 	bulletPool *[]*bullet.Bullet,
+	smokeParticles *[]*smoke.Smoke,
 ) (player *Player) {
 	player = &Player{
-		bulletPool: bulletPool,
+		bulletPool:     bulletPool,
+		smokeParticles: smokeParticles,
 
 		velocity: vectors.Vector3{
 			X: 0,

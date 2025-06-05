@@ -5,7 +5,6 @@ import (
 
 	"github.com/Dobefu/spaceship-game/internal/fastrand"
 	"github.com/Dobefu/spaceship-game/internal/globals"
-	"github.com/Dobefu/spaceship-game/internal/input"
 	"github.com/Dobefu/spaceship-game/internal/vectors"
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/vector"
@@ -14,7 +13,6 @@ import (
 var (
 	fireModelPath       vector.Path
 	fireModelPathPoints []vectors.Vector2
-	rand                = fastrand.NewRand()
 )
 
 func init() {
@@ -33,11 +31,6 @@ func init() {
 }
 
 func (p *Player) drawFireModel(screen *ebiten.Image) {
-	if input.GlobalInput.GetStickLeft().Vertical < 0 {
-		p.fireScale = math.Min(p.fireScale-input.GlobalInput.GetStickLeft().Vertical*0.1, 1)
-	} else {
-		p.fireScale = math.Max(p.fireScale-0.1, 0.0)
-	}
 
 	if p.fireScale <= 0.0 {
 		return
@@ -51,8 +44,8 @@ func (p *Player) drawFireModel(screen *ebiten.Image) {
 		sin := math.Sin(p.rotation)
 		cos := math.Cos(p.rotation)
 
-		randX := float64(rand.Next()>>24)/2550 + 1
-		randY := float64(rand.Next()>>24)/1270 + 1
+		randX := float64(fastrand.Rand.Next()>>24)/2550 + 1
+		randY := float64(fastrand.Rand.Next()>>24)/1270 + 1
 
 		x := ((points.X - playerModelCenter.X) * p.fireScale) * randX
 		y := ((points.Y-8)*p.fireScale + 8) * randY

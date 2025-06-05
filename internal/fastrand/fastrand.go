@@ -7,6 +7,19 @@ import "math/rand"
  * https://github.com/hajimehoshi/ebiten/blob/2.8/examples/noise/main.go#L35
  */
 
+var (
+	Rand fastrand
+)
+
+func init() {
+	Rand = fastrand{
+		x: rand.Uint32(),
+		y: rand.Uint32(),
+		z: rand.Uint32(),
+		w: rand.Uint32(),
+	}
+}
+
 type fastrand struct {
 	x uint32
 	y uint32
@@ -20,13 +33,4 @@ func (r *fastrand) Next() uint32 {
 	r.w = (r.w ^ (r.w >> 19)) ^ (t ^ (t >> 8))
 
 	return r.w
-}
-
-func NewRand() fastrand {
-	return fastrand{
-		x: rand.Uint32(),
-		y: rand.Uint32(),
-		z: rand.Uint32(),
-		w: rand.Uint32(),
-	}
 }
