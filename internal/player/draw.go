@@ -20,7 +20,7 @@ var (
 func init() {
 	blackImage.Set(0, 0, color.Black)
 	whiteImage.Set(0, 0, color.White)
-	redImage.Set(0, 0, color.RGBA{R: 255, G: 0, B: 0, A: 255})
+	redImage.Set(0, 0, color.RGBA{R: 255, G: 50, B: 50, A: 255})
 
 	strokeOptions = &vector.StrokeOptions{
 		Width: globals.GlobalValues.OutlineWidth,

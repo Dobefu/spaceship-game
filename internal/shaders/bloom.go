@@ -4,44 +4,39 @@
 
 package shaders
 
-const glowSize = 256.0 / 512.0
-const glowStrength = 5.0
-const colorBoost = 20.0
-
 func Fragment(position vec4, texCoord vec2, color vec4) vec4 {
-	originalColor := imageSrc0At(texCoord)
-	boostedColor := originalColor * colorBoost
-	blur := vec4(0, 0, 0, 0)
+	posX := position.x
+	posY := imageDstSize().y - position.y
 
-	blur += imageSrc0At(vec2(texCoord.x-3.0*glowSize, texCoord.y)) * 0.1
-	blur += imageSrc0At(vec2(texCoord.x-2.0*glowSize, texCoord.y)) * 0.15
-	blur += imageSrc0At(vec2(texCoord.x-glowSize, texCoord.y)) * 0.25
-	blur += imageSrc0At(vec2(texCoord.x+glowSize, texCoord.y)) * 0.25
-	blur += imageSrc0At(vec2(texCoord.x+2.0*glowSize, texCoord.y)) * 0.15
-	blur += imageSrc0At(vec2(texCoord.x+3.0*glowSize, texCoord.y)) * 0.1
+	srcColor := imageSrc0At(vec2(posX, posY))
 
-	blur += imageSrc0At(vec2(texCoord.x, texCoord.y-3.0*glowSize)) * 0.1
-	blur += imageSrc0At(vec2(texCoord.x, texCoord.y-2.0*glowSize)) * 0.15
-	blur += imageSrc0At(vec2(texCoord.x, texCoord.y-glowSize)) * 0.25
-	blur += imageSrc0At(vec2(texCoord.x, texCoord.y+glowSize)) * 0.25
-	blur += imageSrc0At(vec2(texCoord.x, texCoord.y+2.0*glowSize)) * 0.15
-	blur += imageSrc0At(vec2(texCoord.x, texCoord.y+3.0*glowSize)) * 0.1
+	bloomColour := srcColor
+	numSamples := 1.0
 
-	blur += imageSrc0At(vec2(texCoord.x-2.0*glowSize, texCoord.y-2.0*glowSize)) * 0.1
-	blur += imageSrc0At(vec2(texCoord.x+2.0*glowSize, texCoord.y-2.0*glowSize)) * 0.1
-	blur += imageSrc0At(vec2(texCoord.x-2.0*glowSize, texCoord.y+2.0*glowSize)) * 0.1
-	blur += imageSrc0At(vec2(texCoord.x+2.0*glowSize, texCoord.y+2.0*glowSize)) * 0.1
+	for x := -8.0; x <= 8.0; x += 1.0 {
+		for y := -8.0; y <= 8.0; y += 1.0 {
+			addColor := imageSrc0At(vec2(posX+x, posY+y))
 
-	blur = blur / 2.5
+			if max(addColor.r, max(addColor.g, addColor.b)) <= 0.3 {
+				continue
+			}
 
-	finalColor := boostedColor + blur*glowStrength
+			dist := length(vec2(x, y)) + 1.0
+			glowColor := max((addColor*128.0)/pow(dist, 2.0), vec4(0.0))
 
-	finalColor = vec4(
-		finalColor.r/(finalColor.r+1.0),
-		finalColor.g/(finalColor.g+1.0),
-		finalColor.b/(finalColor.b+1.0),
-		finalColor.a,
-	)
+			if max(glowColor.r, max(glowColor.g, glowColor.b)) <= 0.0 {
+				continue
+			}
 
-	return finalColor
+			bloomColour += glowColor
+			numSamples += 1.0
+		}
+	}
+
+	bloomColour = bloomColour / numSamples
+
+	result := mix(srcColor, bloomColour, 0.05)
+	result.a = 1.0
+
+	return result
 }

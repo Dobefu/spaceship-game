@@ -49,7 +49,7 @@ func (p *Player) HandleMovement() {
 
 				particle.SetIsActive(true)
 				particle.SetScale(5 + ((float32(fastrand.Rand.Next()>>24) - 127) / 127))
-				particle.SetShade(uint8(fastrand.Rand.Next() >> 28))
+				particle.SetShade(50 + uint8(fastrand.Rand.Next()>>28))
 				particle.SetPosition(from)
 				particle.SetVelocity(vectors.Vector3{
 					X: (from.X - p.GetPosition().X) / 10,

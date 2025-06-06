@@ -46,7 +46,7 @@ func (s *Star) Draw(screen *ebiten.Image) {
 		float32(math.Mod(math.Mod(screenPos.Y, gameHeight)+gameHeight, gameHeight)*position.Z),
 		float32(position.Z),
 		float32(position.Z),
-		color.White,
-		false,
+		color.Gray{Y: 150},
+		true,
 	)
 }
