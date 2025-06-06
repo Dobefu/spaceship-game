@@ -15,6 +15,6 @@ func (c *Camera) Update() {
 	targetX := c.target.GetPosition().X - (gameWidth / 2)
 	targetY := c.target.GetPosition().Y - (gameHeight / 2)
 
-	c.position.X += (targetX - c.position.X) / 10
-	c.position.Y += (targetY - c.position.Y) / 10
+	c.position.X += (targetX - c.position.X) / 20
+	c.position.Y += (targetY - c.position.Y) / 20
 }

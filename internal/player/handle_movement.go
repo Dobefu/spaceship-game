@@ -17,8 +17,8 @@ func (p *Player) HandleMovement() {
 		cos := math.Cos(p.rotation + math.Pi/2)
 
 		p.velocity.Add(vectors.Vector3{
-			X: cos * leftAxis.Vertical * .1,
-			Y: sin * leftAxis.Vertical * .1,
+			X: cos * leftAxis.Vertical / 25,
+			Y: sin * leftAxis.Vertical / 25,
 			Z: 0,
 		})
 	}
