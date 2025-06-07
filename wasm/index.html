@@ -18,11 +18,19 @@
         margin: 1rem;
       }
 
-      iframe {
-        aspect-ratio: 1 / 1;
-        border: 0;
+      #game-wrapper {
         border-radius: 1rem;
         max-width: 100%;
+        overflow: hidden;
+        width: 640px;
+      }
+
+      #game {
+        aspect-ratio: 1 / 1;
+        border: 0;
+        transform-origin: top left;
+        vertical-align: middle;
+        width: 100%;
       }
 
       p {
@@ -32,8 +40,17 @@
   </head>
 
   <body>
-    <iframe src="game.html" title="Spaceship Game" width="640"></iframe>
+    <div id="game-wrapper">
+      <iframe id="game" src="game.html" title="Spaceship Game"></iframe>
+    </div>
 
     <p>Created by <a href="https://cv.connor.nl">Connor van Spronssen</a></p>
+
+    <script>
+      if (window.devicePixelRatio !== 1) {
+        const game = document.getElementById("game");
+        game.style.scale = window.devicePixelRatio;
+      }
+    </script>
   </body>
 </html>
