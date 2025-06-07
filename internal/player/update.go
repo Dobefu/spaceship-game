@@ -13,7 +13,7 @@ func (p *Player) Update() (err error) {
 
 	if input.GlobalInput.GetButtonA().IsHeld && p.shootCooldown <= 0 {
 		p.Shoot()
-		p.shootCooldown = 30
+		p.shootCooldown = 10
 	}
 
 	return nil
