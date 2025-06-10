@@ -10,6 +10,7 @@ type IVector2 interface {
 	Mul(vec Vector2)
 	Div(vec Vector2)
 	Normalize() (vec Vector2)
+	ToVector3() Vector2
 }
 
 type Vector2 struct {
@@ -49,4 +50,12 @@ func (v *Vector2) Normalize() (vec Vector2) {
 	}
 
 	return vec
+}
+
+func (v Vector2) ToVector3() Vector3 {
+	return Vector3{
+		X: v.X,
+		Y: v.Y,
+		Z: 0,
+	}
 }
