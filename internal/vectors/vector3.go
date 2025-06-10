@@ -1,5 +1,9 @@
 package vectors
 
+import (
+	"math"
+)
+
 type IVector3 interface {
 	Add(vec Vector3)
 	Sub(vec Vector3)
@@ -43,12 +47,13 @@ func (v *Vector3) Div(vec Vector3) {
 
 func (v *Vector3) Normalize() (vec Vector3) {
 	vec = *v
+	magnitude := math.Sqrt(v.X*v.X + v.Y*v.Y + v.Z*v.Z)
 
-	magnitude := v.X*v.X + v.Y*v.Y + v.Z*v.Z
-
-	vec.X /= magnitude
-	vec.Y /= magnitude
-	vec.Z /= magnitude
+	if magnitude != 0 {
+		vec.X /= magnitude
+		vec.Y /= magnitude
+		vec.Z /= magnitude
+	}
 
 	return vec
 }
