@@ -13,8 +13,8 @@ func Fragment(position vec4, texCoord vec2, color vec4) vec4 {
 	bloomColour := srcColor
 	numSamples := 1.0
 
-	for x := -8.0; x <= 8.0; x += 1.0 {
-		for y := -8.0; y <= 8.0; y += 1.0 {
+	for x := -9.0; x <= 9.0; x += 3.0 {
+		for y := -9.0; y <= 9.0; y += 3.0 {
 			addColor := imageSrc0At(vec2(posX+x, posY+y))
 
 			if max(addColor.r, max(addColor.g, addColor.b)) <= 0.3 {
