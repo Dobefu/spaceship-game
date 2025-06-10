@@ -44,8 +44,8 @@ func (p *Player) drawFireModel(screen *ebiten.Image) {
 		sin := math.Sin(p.rotation)
 		cos := math.Cos(p.rotation)
 
-		randX := float64(fastrand.Rand.Next()>>24)/2550 + 1
-		randY := float64(fastrand.Rand.Next()>>24)/1270 + 1
+		randX := float64(fastrand.Rand.Next()>>24)/1270 + 1
+		randY := float64(fastrand.Rand.Next()>>24)/1000 + 1
 
 		x := ((points.X - playerModelCenter.X) * p.fireScale) * randX
 		y := ((points.Y-8)*p.fireScale + 8) * randY
