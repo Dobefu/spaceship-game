@@ -1,10 +1,9 @@
 package main_menu_scene
 
 import (
-	"fmt"
-
 	"github.com/Dobefu/spaceship-game/internal/globals"
 	"github.com/Dobefu/spaceship-game/internal/scene"
+	"github.com/Dobefu/spaceship-game/internal/scenes/game_scene"
 	"github.com/Dobefu/spaceship-game/internal/ui"
 	"github.com/Dobefu/spaceship-game/internal/vectors"
 	"github.com/hajimehoshi/ebiten/v2/text/v2"
@@ -27,7 +26,7 @@ func (s *MainMenuScene) Init() {
 			text.AlignCenter,
 			"Start",
 			func() {
-				fmt.Println("Click!")
+				globals.GlobalValues.Game.SetScene(&game_scene.GameScene{})
 			},
 		),
 	)
