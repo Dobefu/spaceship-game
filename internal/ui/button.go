@@ -56,14 +56,17 @@ func NewButton(
 
 func (b *Button) Update() (err error) {
 	cx, cy := ebiten.CursorPosition()
-	position := b.GetPosition()
+
+	position := b.getAlignedPosition()
+	posX := position.X
+	posY := position.Y
 
 	b.state = buttonStateNormal
 
-	if float64(cx) >= position.X &&
-		float64(cx) < position.X+float64(b.width) &&
-		float64(cy) >= position.Y &&
-		float64(cy) < position.Y+float64(b.height) {
+	if float64(cx) >= posX &&
+		float64(cx) < posX+float64(b.width) &&
+		float64(cy) >= posY &&
+		float64(cy) < posY+float64(b.height) {
 
 		b.state = buttonStateHover
 
@@ -75,28 +78,15 @@ func (b *Button) Update() (err error) {
 }
 
 func (b *Button) Draw(screen *ebiten.Image) {
-	position := b.GetPosition()
 	var bg uint8 = 100
 
 	if b.state != buttonStateNormal {
 		bg = 90
 	}
 
+	position := b.getAlignedPosition()
 	posX := float32(position.X)
 	posY := float32(position.Y)
-
-	if b.halign == text.AlignCenter {
-		posX -= b.width / 2
-	}
-	if b.valign == text.AlignCenter {
-		posY -= b.height / 2
-	}
-	if b.halign == text.AlignEnd {
-		posX -= b.width
-	}
-	if b.valign == text.AlignEnd {
-		posY -= b.height
-	}
 
 	vector.DrawFilledRect(
 		screen,
@@ -140,4 +130,26 @@ func (b *Button) Draw(screen *ebiten.Image) {
 		},
 		op,
 	)
+}
+
+func (b *Button) getAlignedPosition() vectors.Vector2 {
+	position := b.GetPosition()
+
+	posX := position.X
+	posY := position.Y
+
+	if b.halign == text.AlignCenter {
+		posX -= float64(b.width / 2)
+	}
+	if b.valign == text.AlignCenter {
+		posY -= float64(b.height / 2)
+	}
+	if b.halign == text.AlignEnd {
+		posX -= float64(b.width)
+	}
+	if b.valign == text.AlignEnd {
+		posY -= float64(b.height)
+	}
+
+	return vectors.Vector2{X: posX, Y: posY}
 }
