@@ -1,4 +1,4 @@
-package game_scene
+package scenes
 
 import (
 	"math/rand"
