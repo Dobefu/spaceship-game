@@ -27,7 +27,8 @@ type Button struct {
 	halign text.Align
 	valign text.Align
 
-	text string
+	text   string
+	action func()
 
 	state buttonState
 }
@@ -36,9 +37,10 @@ func NewButton(
 	position vectors.Vector2,
 	width float32,
 	height float32,
-	text string,
 	halign text.Align,
 	valign text.Align,
+	text string,
+	action func(),
 ) *Button {
 	button := &Button{
 		width:  width,
@@ -46,6 +48,7 @@ func NewButton(
 		halign: halign,
 		valign: valign,
 		text:   text,
+		action: action,
 	}
 
 	button.SetPosition(position.ToVector3())
@@ -61,19 +64,25 @@ func (b *Button) Update() (err error) {
 	posX := position.X
 	posY := position.Y
 
-	b.state = buttonStateNormal
-
 	if float64(cx) >= posX &&
 		float64(cx) < posX+float64(b.width) &&
 		float64(cy) >= posY &&
 		float64(cy) < posY+float64(b.height) {
+
+		if b.state == buttonStateActive && inpututil.IsMouseButtonJustReleased(ebiten.MouseButton0) {
+			b.action()
+		}
 
 		b.state = buttonStateHover
 
 		if inpututil.MouseButtonPressDuration(ebiten.MouseButton0) > 0 {
 			b.state = buttonStateActive
 		}
+
+		return
 	}
+
+	b.state = buttonStateNormal
 	return nil
 }
 

@@ -1,6 +1,8 @@
 package main_menu_scene
 
 import (
+	"fmt"
+
 	"github.com/Dobefu/spaceship-game/internal/globals"
 	"github.com/Dobefu/spaceship-game/internal/scene"
 	"github.com/Dobefu/spaceship-game/internal/ui"
@@ -21,9 +23,12 @@ func (s *MainMenuScene) Init() {
 			},
 			150,
 			50,
+			text.AlignCenter,
+			text.AlignCenter,
 			"Start",
-			text.AlignCenter,
-			text.AlignCenter,
+			func() {
+				fmt.Println("Click!")
+			},
 		),
 	)
 }
