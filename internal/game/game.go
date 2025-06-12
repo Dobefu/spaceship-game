@@ -61,22 +61,19 @@ func (g *Game) Draw(screen *ebiten.Image) {
 }
 
 func (g *Game) DrawFinalScreen(screen ebiten.FinalScreen, offscreen *ebiten.Image, geoM ebiten.GeoM) {
-	scale := int(ebiten.Monitor().DeviceScaleFactor())
-
 	shaderOptions := &ebiten.DrawRectShaderOptions{}
 	shaderOptions.Images[0] = offscreen
 
 	screen.DrawRectShader(
-		globals.GlobalValues.Width*scale,
-		globals.GlobalValues.Height*scale,
+		globals.GlobalValues.Width,
+		globals.GlobalValues.Height,
 		shaders.Bloom,
 		shaderOptions,
 	)
 }
 
 func (g *Game) Layout(outsideWidth, outsideHeight int) (screenWidth, screenHeight int) {
-	scale := int(ebiten.Monitor().DeviceScaleFactor())
-	return globals.GlobalValues.Height * scale, globals.GlobalValues.Width * scale
+	return globals.GlobalValues.Height, globals.GlobalValues.Width
 }
 
 func Run() {
@@ -86,7 +83,11 @@ func Run() {
 	globals.GlobalValues.Game = &Game{}
 	globals.GlobalValues.Game.SetScene(&scenes.MainMenuScene{})
 
-	err := ebiten.RunGame(globals.GlobalValues.Game)
+	gameOptions := &ebiten.RunGameOptions{
+		DisableHiDPI: true,
+	}
+
+	err := ebiten.RunGameWithOptions(globals.GlobalValues.Game, gameOptions)
 
 	if err != nil {
 		log.Fatal(err)

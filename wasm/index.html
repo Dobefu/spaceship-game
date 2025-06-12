@@ -18,19 +18,13 @@
         margin: 1rem;
       }
 
-      #game-wrapper {
-        border-radius: 1rem;
-        max-width: 100%;
-        overflow: hidden;
-        width: 640px;
-      }
-
       #game {
         aspect-ratio: 1 / 1;
         border: 0;
+        border-radius: 1rem;
         transform-origin: top left;
         vertical-align: middle;
-        width: 100%;
+        width: 640px;
       }
 
       p {
@@ -45,12 +39,5 @@
     </div>
 
     <p>Created by <a href="https://cv.connor.nl">Connor van Spronssen</a></p>
-
-    <script>
-      if (window.devicePixelRatio !== 1) {
-        const game = document.getElementById("game");
-        game.style.scale = window.devicePixelRatio;
-      }
-    </script>
   </body>
 </html>
