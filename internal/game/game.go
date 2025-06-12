@@ -65,15 +65,15 @@ func (g *Game) DrawFinalScreen(screen ebiten.FinalScreen, offscreen *ebiten.Imag
 	shaderOptions.Images[0] = offscreen
 
 	screen.DrawRectShader(
-		globals.GlobalValues.Width,
-		globals.GlobalValues.Height,
+		screen.Bounds().Dx(),
+		screen.Bounds().Dy(),
 		shaders.Bloom,
 		shaderOptions,
 	)
 }
 
 func (g *Game) Layout(outsideWidth, outsideHeight int) (screenWidth, screenHeight int) {
-	return globals.GlobalValues.Height, globals.GlobalValues.Width
+	return outsideHeight, outsideWidth
 }
 
 func Run() {
