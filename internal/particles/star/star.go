@@ -35,17 +35,15 @@ func (s *Star) Draw(screen *ebiten.Image) {
 
 	position := s.GetPosition()
 
-	screenPos := camera.WorldToScreenPosition(vectors.Vector2{
-		X: position.X,
-		Y: position.Y,
-	})
+	screenPos := camera.WorldToScreenPosition2D(position)
+	scale := float32(1/(1+math.Abs(position.Z)*0.5)) * 3
 
 	vector.DrawFilledRect(
 		screen,
-		float32(math.Mod(math.Mod(screenPos.X, gameWidth)+gameWidth, gameWidth)*position.Z),
-		float32(math.Mod(math.Mod(screenPos.Y, gameHeight)+gameHeight, gameHeight)*position.Z),
-		float32(position.Z),
-		float32(position.Z),
+		float32(math.Mod(math.Mod(screenPos.X, gameWidth)+gameWidth, gameWidth)),
+		float32(math.Mod(math.Mod(screenPos.Y, gameHeight)+gameHeight, gameHeight)),
+		scale,
+		scale,
 		color.Gray{Y: 150},
 		true,
 	)

@@ -40,7 +40,7 @@ func (s *Smoke) SetVelocity(velocity vectors.Vector3) {
 
 func (s *Smoke) Update() (err error) {
 	camera := globals.GlobalValues.Game.GetScene().GetCamera()
-	screenPos := camera.WorldToScreenPosition(s.GetPosition().ToVector2())
+	screenPos := camera.WorldToScreenPosition2D(s.GetPosition())
 
 	// If the smoke particle is off-screen, deactivate it.
 	if camera.IsPositionWithinBounds(screenPos, float64(s.scale)/2) {
@@ -66,10 +66,7 @@ func (s *Smoke) Draw(screen *ebiten.Image) {
 
 	position := s.GetPosition()
 
-	screenPos := camera.WorldToScreenPosition(vectors.Vector2{
-		X: position.X,
-		Y: position.Y,
-	})
+	screenPos := camera.WorldToScreenPosition2D(position)
 
 	vector.StrokeCircle(
 		screen,

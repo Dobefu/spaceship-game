@@ -10,7 +10,7 @@ import (
 
 func (b *Bullet) Draw(screen *ebiten.Image) {
 	camera := globals.GlobalValues.Game.GetScene().GetCamera()
-	screenPos := camera.WorldToScreenPosition(b.GetPosition().ToVector2())
+	screenPos := camera.WorldToScreenPosition2D(b.GetPosition())
 
 	vector.StrokeCircle(
 		screen,

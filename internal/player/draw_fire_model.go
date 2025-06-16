@@ -50,9 +50,10 @@ func (p *Player) drawFireModel(screen *ebiten.Image) {
 		x := ((points.X - playerModelCenter.X) * p.fireScale) * randX
 		y := ((points.Y-8)*p.fireScale + 8) * randY
 
-		screenPos := camera.WorldToScreenPosition(vectors.Vector2{
+		screenPos := camera.WorldToScreenPosition2D(vectors.Vector3{
 			X: ((x*cos - y*sin) + position.X) * p.scale,
 			Y: ((x*sin + y*cos) + position.Y) * p.scale,
+			Z: position.Z,
 		})
 
 		fireModelPath.LineTo(

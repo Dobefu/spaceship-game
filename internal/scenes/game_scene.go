@@ -4,6 +4,7 @@ import (
 	"math/rand"
 
 	"github.com/Dobefu/spaceship-game/internal/bullet"
+	"github.com/Dobefu/spaceship-game/internal/globals"
 	"github.com/Dobefu/spaceship-game/internal/particles/smoke"
 	"github.com/Dobefu/spaceship-game/internal/particles/star"
 	"github.com/Dobefu/spaceship-game/internal/player"
@@ -39,10 +40,10 @@ func (s *GameScene) Init() {
 	s.AddGameObject(player)
 	s.Camera.SetTarget(player)
 
-	for range 200 {
-		randX := rand.Float64() * 640
-		randY := rand.Float64() * 640
-		randZ := rand.Float64() * 3
+	for range 100 {
+		randX := rand.Float64() * float64(globals.GlobalValues.Width) * 3
+		randY := rand.Float64() * float64(globals.GlobalValues.Height) * 3
+		randZ := rand.Float64() * -3
 
 		s.AddGameObject(star.NewStar(vectors.Vector3{
 			X: randX,

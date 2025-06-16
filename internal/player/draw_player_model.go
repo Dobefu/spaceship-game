@@ -44,9 +44,10 @@ func (p *Player) drawPlayerModel(screen *ebiten.Image) {
 		x := (points.X - playerModelCenter.X)
 		y := (points.Y - playerModelCenter.Y)
 
-		screenPos := camera.WorldToScreenPosition(vectors.Vector2{
+		screenPos := camera.WorldToScreenPosition2D(vectors.Vector3{
 			X: ((x*cos - y*sin) + position.X) * p.scale,
 			Y: ((x*sin + y*cos) + position.Y) * p.scale,
+			Z: position.Z,
 		})
 
 		playerModelPath.LineTo(
