@@ -63,21 +63,24 @@ func (g *Game) Draw(screen *ebiten.Image) {
 func (g *Game) DrawFinalScreen(screen ebiten.FinalScreen, offscreen *ebiten.Image, geoM ebiten.GeoM) {
 	shaderOptions := &ebiten.DrawRectShaderOptions{}
 	shaderOptions.Images[0] = offscreen
+	shaderOptions.GeoM = geoM
+
+	os := offscreen.Bounds().Size()
 
 	screen.DrawRectShader(
-		screen.Bounds().Dx(),
-		screen.Bounds().Dy(),
+		os.X,
+		os.Y,
 		shaders.Bloom,
 		shaderOptions,
 	)
 }
 
 func (g *Game) Layout(outsideWidth, outsideHeight int) (screenWidth, screenHeight int) {
-	return outsideHeight, outsideWidth
+	return outsideWidth, outsideHeight
 }
 
 func Run() {
-	ebiten.SetWindowSize(globals.GlobalValues.Height, globals.GlobalValues.Width)
+	ebiten.SetWindowSize(globals.GlobalValues.Width, globals.GlobalValues.Height)
 	ebiten.SetWindowTitle("Spaceship Game")
 
 	globals.GlobalValues.Game = &Game{}
