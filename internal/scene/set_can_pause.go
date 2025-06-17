@@ -16,12 +16,12 @@ func (s *Scene) SetCanPause(canPause bool) {
 			ui.NewText(
 				vectors.Vector2{
 					X: float64(globals.GlobalValues.Width) / 2,
-					Y: float64(globals.GlobalValues.Height) / 4,
+					Y: float64(globals.GlobalValues.Height)/2 - 75,
 				},
 				text.AlignCenter,
 				text.AlignCenter,
 				"Paused",
-				40,
+				32,
 			),
 		)
 
@@ -30,6 +30,23 @@ func (s *Scene) SetCanPause(canPause bool) {
 				vectors.Vector2{
 					X: float64(globals.GlobalValues.Width) / 2,
 					Y: float64(globals.GlobalValues.Height) / 2,
+				},
+				175,
+				50,
+				text.AlignCenter,
+				text.AlignStart,
+				"Continue",
+				func() {
+					s.SetIsPaused(false)
+				},
+			),
+		)
+
+		s.AddPauseScreenGameObject(
+			ui.NewButton(
+				vectors.Vector2{
+					X: float64(globals.GlobalValues.Width) / 2,
+					Y: float64(globals.GlobalValues.Height)/2 + 75,
 				},
 				175,
 				50,
