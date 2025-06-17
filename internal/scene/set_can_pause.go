@@ -13,6 +13,19 @@ func (s *Scene) SetCanPause(canPause bool) {
 	// Create the pause UI gameObjects if they're not already present.
 	if len(s.GetPauseScreenGameObjects()) <= 0 {
 		s.AddPauseScreenGameObject(
+			ui.NewText(
+				vectors.Vector2{
+					X: float64(globals.GlobalValues.Width) / 2,
+					Y: float64(globals.GlobalValues.Height) / 4,
+				},
+				text.AlignCenter,
+				text.AlignCenter,
+				"Paused",
+				40,
+			),
+		)
+
+		s.AddPauseScreenGameObject(
 			ui.NewButton(
 				vectors.Vector2{
 					X: float64(globals.GlobalValues.Width) / 2,
