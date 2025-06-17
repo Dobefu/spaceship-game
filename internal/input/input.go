@@ -12,6 +12,7 @@ var (
 type Input struct {
 	interfaces.Input
 
-	stickLeft interfaces.Axis
-	buttonA   interfaces.Button
+	stickLeft   interfaces.Axis
+	buttonStart interfaces.Button
+	buttonA     interfaces.Button
 }

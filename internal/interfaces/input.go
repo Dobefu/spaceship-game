@@ -3,9 +3,11 @@ package interfaces
 type Input interface {
 	Update()
 	GetStickLeft() Axis
+	GetButtonStart() Button
 	GetButtonA() Button
 
 	updateStickLeft()
+	updateButtonStart()
 	updateButtonA()
 }
 
