@@ -10,4 +10,5 @@ type Scene struct {
 	Camera            interfaces.Camera
 	gameObjects       []interfaces.GameObject
 	isDepthOrderDirty bool
+	isPaused          bool
 }

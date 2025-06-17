@@ -7,4 +7,6 @@ type Scene interface {
 	SetCamera(camera Camera)
 	GetCamera() (camera Camera)
 	InvalidateDepthOrder()
+	SetIsPaused(isPaused bool)
+	GetIsPaused() (isPaused bool)
 }
