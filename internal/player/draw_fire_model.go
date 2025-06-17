@@ -3,7 +3,6 @@ package player
 import (
 	"math"
 
-	"github.com/Dobefu/spaceship-game/internal/fastrand"
 	"github.com/Dobefu/spaceship-game/internal/globals"
 	"github.com/Dobefu/spaceship-game/internal/vectors"
 	"github.com/hajimehoshi/ebiten/v2"
@@ -11,8 +10,9 @@ import (
 )
 
 var (
-	fireModelPath       vector.Path
-	fireModelPathPoints []vectors.Vector2
+	fireModelPath        vector.Path
+	fireModelPathPoints  []vectors.Vector2
+	fireModelPathOffsets []vectors.Vector2
 )
 
 func init() {
@@ -28,6 +28,14 @@ func init() {
 		{X: 14, Y: 16},
 		{X: 17, Y: 10},
 	}
+
+	// Pre-fill the offsets slice, to get allocations out of the way.
+	for range fireModelPathPoints {
+		fireModelPathOffsets = append(
+			fireModelPathOffsets,
+			vectors.Vector2{X: 0, Y: 0},
+		)
+	}
 }
 
 func (p *Player) drawFireModel(screen *ebiten.Image) {
@@ -40,15 +48,12 @@ func (p *Player) drawFireModel(screen *ebiten.Image) {
 	camera := globals.GlobalValues.Game.GetScene().GetCamera()
 	position := p.GetPosition()
 
-	for _, points := range fireModelPathPoints {
+	for i, points := range fireModelPathPoints {
 		sin := math.Sin(p.rotation)
 		cos := math.Cos(p.rotation)
 
-		randX := float64(fastrand.Rand.Next()>>24)/1270 + 1
-		randY := float64(fastrand.Rand.Next()>>24)/1000 + 1
-
-		x := ((points.X - playerModelCenter.X) * p.fireScale) * randX
-		y := ((points.Y-8)*p.fireScale + 8) * randY
+		x := ((points.X - playerModelCenter.X) * p.fireScale) * fireModelPathOffsets[i].X
+		y := ((points.Y-8)*p.fireScale + 8) * fireModelPathOffsets[i].Y
 
 		screenPos := camera.WorldToScreenPosition2D(vectors.Vector3{
 			X: ((x*cos - y*sin) + position.X) * p.scale,
