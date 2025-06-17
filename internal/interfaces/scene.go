@@ -9,4 +9,6 @@ type Scene interface {
 	InvalidateDepthOrder()
 	SetIsPaused(isPaused bool)
 	GetIsPaused() (isPaused bool)
+	SetCanPause(canPause bool)
+	GetCanPause() (canPause bool)
 }

@@ -24,6 +24,14 @@ func (g *Game) Update() (err error) {
 		return nil
 	}
 
+	if g.scene.GetCanPause() && input.GlobalInput.GetButtonStart().IsPressed {
+		g.scene.SetIsPaused(!g.scene.GetIsPaused())
+	}
+
+	if g.scene.GetIsPaused() {
+		return nil
+	}
+
 	gameObjects := g.scene.GetGameObjects()
 
 	for _, gameObject := range gameObjects {

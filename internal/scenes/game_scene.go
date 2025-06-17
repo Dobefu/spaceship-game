@@ -17,6 +17,8 @@ type GameScene struct {
 }
 
 func (s *GameScene) Init() {
+	s.SetCanPause(true)
+
 	var bulletPool []*bullet.Bullet
 
 	for range 10 {
