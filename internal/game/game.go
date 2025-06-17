@@ -28,11 +28,13 @@ func (g *Game) Update() (err error) {
 		g.scene.SetIsPaused(!g.scene.GetIsPaused())
 	}
 
-	if g.scene.GetIsPaused() {
-		return nil
-	}
+	var gameObjects []interfaces.GameObject
 
-	gameObjects := g.scene.GetGameObjects()
+	if g.scene.GetIsPaused() {
+		gameObjects = g.scene.GetPauseScreenGameObjects()
+	} else {
+		gameObjects = g.scene.GetGameObjects()
+	}
 
 	for _, gameObject := range gameObjects {
 		if !gameObject.GetIsActive() {
@@ -46,8 +48,10 @@ func (g *Game) Update() (err error) {
 		}
 	}
 
-	camera := g.scene.GetCamera()
-	camera.Update()
+	if !g.scene.GetIsPaused() {
+		camera := g.scene.GetCamera()
+		camera.Update()
+	}
 
 	return nil
 }
@@ -58,6 +62,10 @@ func (g *Game) Draw(screen *ebiten.Image) {
 	}
 
 	gameObjects := g.scene.GetGameObjects()
+
+	if g.scene.GetIsPaused() {
+		gameObjects = append(gameObjects, g.scene.GetPauseScreenGameObjects()...)
+	}
 
 	for _, gameObject := range gameObjects {
 		if !gameObject.GetIsActive() {

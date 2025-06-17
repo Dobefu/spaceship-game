@@ -3,6 +3,7 @@ package interfaces
 type Scene interface {
 	Init()
 	GetGameObjects() []GameObject
+	GetPauseScreenGameObjects() []GameObject
 	AddGameObject(gameObject GameObject)
 	SetCamera(camera Camera)
 	GetCamera() (camera Camera)

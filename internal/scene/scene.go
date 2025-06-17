@@ -7,9 +7,10 @@ import (
 type Scene struct {
 	interfaces.Scene
 
-	Camera            interfaces.Camera
-	gameObjects       []interfaces.GameObject
-	isDepthOrderDirty bool
-	isPaused          bool
-	canPause          bool
+	Camera                 interfaces.Camera
+	gameObjects            []interfaces.GameObject
+	pauseScreenGameObjects []interfaces.GameObject
+	isDepthOrderDirty      bool
+	isPaused               bool
+	canPause               bool
 }
