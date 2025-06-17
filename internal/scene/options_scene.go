@@ -1,18 +1,17 @@
-package scenes
+package scene
 
 import (
 	"github.com/Dobefu/spaceship-game/internal/globals"
-	"github.com/Dobefu/spaceship-game/internal/scene"
 	"github.com/Dobefu/spaceship-game/internal/ui"
 	"github.com/Dobefu/spaceship-game/internal/vectors"
 	"github.com/hajimehoshi/ebiten/v2/text/v2"
 )
 
-type MainMenuScene struct {
-	scene.Scene
+type OptionsScene struct {
+	Scene
 }
 
-func (s *MainMenuScene) Init() {
+func (s *OptionsScene) Init() {
 	s.AddGameObject(
 		ui.NewText(
 			vectors.Vector2{
@@ -21,7 +20,7 @@ func (s *MainMenuScene) Init() {
 			},
 			text.AlignCenter,
 			text.AlignCenter,
-			"Title Screen",
+			"Options",
 			40,
 		),
 	)
@@ -32,30 +31,13 @@ func (s *MainMenuScene) Init() {
 				X: float64(globals.GlobalValues.Width) / 2,
 				Y: float64(globals.GlobalValues.Height) / 2,
 			},
-			150,
+			175,
 			50,
 			text.AlignCenter,
 			text.AlignStart,
-			"Start",
+			"Back",
 			func() {
-				globals.GlobalValues.Game.SetScene(&GameScene{})
-			},
-		),
-	)
-
-	s.AddGameObject(
-		ui.NewButton(
-			vectors.Vector2{
-				X: float64(globals.GlobalValues.Width) / 2,
-				Y: float64(globals.GlobalValues.Height)/2 + 75,
-			},
-			150,
-			50,
-			text.AlignCenter,
-			text.AlignStart,
-			"Options",
-			func() {
-				globals.GlobalValues.Game.SetScene(&OptionsScene{})
+				globals.GlobalValues.Game.SetScene(&MainMenuScene{})
 			},
 		),
 	)

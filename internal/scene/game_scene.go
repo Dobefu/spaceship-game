@@ -1,4 +1,4 @@
-package scenes
+package scene
 
 import (
 	"math/rand"
@@ -8,12 +8,11 @@ import (
 	"github.com/Dobefu/spaceship-game/internal/particles/smoke"
 	"github.com/Dobefu/spaceship-game/internal/particles/star"
 	"github.com/Dobefu/spaceship-game/internal/player"
-	"github.com/Dobefu/spaceship-game/internal/scene"
 	"github.com/Dobefu/spaceship-game/internal/vectors"
 )
 
 type GameScene struct {
-	scene.Scene
+	Scene
 }
 
 func (s *GameScene) Init() {

@@ -6,7 +6,7 @@ import (
 	"github.com/Dobefu/spaceship-game/internal/globals"
 	"github.com/Dobefu/spaceship-game/internal/input"
 	"github.com/Dobefu/spaceship-game/internal/interfaces"
-	"github.com/Dobefu/spaceship-game/internal/scenes"
+	"github.com/Dobefu/spaceship-game/internal/scene"
 	"github.com/Dobefu/spaceship-game/internal/shaders"
 	"github.com/hajimehoshi/ebiten/v2"
 )
@@ -100,7 +100,7 @@ func Run() {
 	ebiten.SetWindowTitle("Spaceship Game")
 
 	globals.GlobalValues.Game = &Game{}
-	globals.GlobalValues.Game.SetScene(&scenes.MainMenuScene{})
+	globals.GlobalValues.Game.SetScene(&scene.MainMenuScene{})
 
 	gameOptions := &ebiten.RunGameOptions{
 		DisableHiDPI: true,
