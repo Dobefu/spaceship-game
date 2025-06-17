@@ -11,4 +11,5 @@ type Scene struct {
 	gameObjects       []interfaces.GameObject
 	isDepthOrderDirty bool
 	isPaused          bool
+	canPause          bool
 }
