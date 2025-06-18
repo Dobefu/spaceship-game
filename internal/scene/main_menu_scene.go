@@ -31,12 +31,12 @@ func (s *MainMenuScene) Init() {
 				X: float64(globals.GlobalValues.Width) / 2,
 				Y: float64(globals.GlobalValues.Height) / 2,
 			},
-			175,
+			150,
 			50,
 			text.AlignCenter,
 			text.AlignStart,
 			"Start",
-			func() {
+			func(b *ui.Button) {
 				globals.GlobalValues.Game.SetScene(&GameScene{})
 			},
 		),
@@ -48,12 +48,12 @@ func (s *MainMenuScene) Init() {
 				X: float64(globals.GlobalValues.Width) / 2,
 				Y: float64(globals.GlobalValues.Height)/2 + 75,
 			},
-			175,
+			150,
 			50,
 			text.AlignCenter,
 			text.AlignStart,
 			"Options",
-			func() {
+			func(b *ui.Button) {
 				globals.GlobalValues.Game.SetScene(&OptionsScene{})
 			},
 		),

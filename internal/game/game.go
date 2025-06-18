@@ -77,6 +77,11 @@ func (g *Game) Draw(screen *ebiten.Image) {
 }
 
 func (g *Game) DrawFinalScreen(screen ebiten.FinalScreen, offscreen *ebiten.Image, geoM ebiten.GeoM) {
+	if !globals.Options.EnableShaders {
+		screen.DrawImage(offscreen, nil)
+		return
+	}
+
 	shaderOptions := &ebiten.DrawRectShaderOptions{}
 	shaderOptions.Images[0] = offscreen
 	shaderOptions.GeoM = geoM

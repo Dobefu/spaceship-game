@@ -28,7 +28,7 @@ type Button struct {
 	valign text.Align
 
 	text   string
-	action func()
+	action func(b *Button)
 
 	state buttonState
 }
@@ -40,7 +40,7 @@ func NewButton(
 	halign text.Align,
 	valign text.Align,
 	text string,
-	action func(),
+	action func(b *Button),
 ) *Button {
 	button := &Button{
 		width:  width,
@@ -70,7 +70,7 @@ func (b *Button) Update() (err error) {
 		float64(cy) < posY+float64(b.height) {
 
 		if b.state == buttonStateActive && inpututil.IsMouseButtonJustReleased(ebiten.MouseButton0) {
-			b.action()
+			b.action(b)
 		}
 
 		b.state = buttonStateHover
@@ -161,4 +161,8 @@ func (b *Button) getAlignedPosition() vectors.Vector2 {
 	}
 
 	return vectors.Vector2{X: posX, Y: posY}
+}
+
+func (b *Button) SetText(text string) {
+	b.text = text
 }

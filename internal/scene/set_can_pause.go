@@ -36,7 +36,7 @@ func (s *Scene) SetCanPause(canPause bool) {
 				text.AlignCenter,
 				text.AlignStart,
 				"Continue",
-				func() {
+				func(b *ui.Button) {
 					s.SetIsPaused(false)
 				},
 			),
@@ -53,7 +53,7 @@ func (s *Scene) SetCanPause(canPause bool) {
 				text.AlignCenter,
 				text.AlignStart,
 				"Main menu",
-				func() {
+				func(b *ui.Button) {
 					globals.GlobalValues.Game.SetScene(&MainMenuScene{})
 				},
 			),
