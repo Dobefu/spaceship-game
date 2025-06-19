@@ -11,7 +11,7 @@
 - Build the application:
 
   ```bash
-  run: go build -o wasm/game.wasm
+  go build -o wasm/game.wasm
   ```
 
 - Or run the application in dev mode:
