@@ -41,6 +41,16 @@ func (s *OptionsScene) Init() {
 			func(b *ui.Button) {
 				globals.Options.EnableShaders = !globals.Options.EnableShaders
 				b.SetText(fmt.Sprintf("Shaders: %v", globals.Options.EnableShaders))
+
+				go func() {
+					var enableShaders byte = 0
+
+					if globals.Options.EnableShaders {
+						enableShaders = 1
+					}
+
+					_ = globals.DataManager.SaveObjectProp("settings", "enable-shaders", []byte{enableShaders})
+				}()
 			},
 		),
 	)
