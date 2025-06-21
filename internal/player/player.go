@@ -3,6 +3,7 @@ package player
 import (
 	"github.com/Dobefu/spaceship-game/internal/bullet"
 	"github.com/Dobefu/spaceship-game/internal/game_object"
+	"github.com/Dobefu/spaceship-game/internal/globals"
 	"github.com/Dobefu/spaceship-game/internal/particles/smoke"
 	"github.com/Dobefu/spaceship-game/internal/vectors"
 	"github.com/hajimehoshi/ebiten/v2"
@@ -27,12 +28,30 @@ type Player struct {
 
 func NewPlayer(
 	position vectors.Vector3,
-	bulletPool *[]*bullet.Bullet,
-	smokeParticles *[]*smoke.Smoke,
 ) (player *Player) {
+	s := globals.GlobalValues.Game.GetScene()
+
+	var bulletPool []*bullet.Bullet
+
+	for range 10 {
+		b := bullet.NewBullet()
+		s.AddGameObject(b)
+
+		bulletPool = append(bulletPool, b)
+	}
+
+	var smokeParticles []*smoke.Smoke
+
+	for range 60 {
+		particle := smoke.NewSmoke()
+		s.AddGameObject(particle)
+
+		smokeParticles = append(smokeParticles, particle)
+	}
+
 	player = &Player{
-		bulletPool:     bulletPool,
-		smokeParticles: smokeParticles,
+		bulletPool:     &bulletPool,
+		smokeParticles: &smokeParticles,
 
 		velocity: vectors.Vector3{
 			X: 0,
