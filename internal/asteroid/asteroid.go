@@ -2,7 +2,6 @@ package asteroid
 
 import (
 	"github.com/Dobefu/spaceship-game/internal/game_object"
-	"github.com/Dobefu/spaceship-game/internal/vectors"
 	"github.com/hajimehoshi/ebiten/v2"
 )
 
@@ -16,13 +15,10 @@ type Asteroid struct {
 	indices  []uint16
 }
 
-func NewAsteroid(position vectors.Vector3) (asteroid *Asteroid) {
+func NewAsteroid() (asteroid *Asteroid) {
 	asteroid = &Asteroid{
 		scale: 1,
 	}
-
-	asteroid.SetPosition(position)
-	asteroid.SetIsActive(true)
 
 	return asteroid
 }

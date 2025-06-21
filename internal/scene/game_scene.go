@@ -3,6 +3,7 @@ package scene
 import (
 	"math/rand"
 
+	"github.com/Dobefu/spaceship-game/internal/asteroid"
 	"github.com/Dobefu/spaceship-game/internal/globals"
 	"github.com/Dobefu/spaceship-game/internal/particles/star"
 	"github.com/Dobefu/spaceship-game/internal/player"
@@ -32,4 +33,6 @@ func (s *GameScene) Init() {
 			Z: randZ,
 		}))
 	}
+
+	s.AddGameObject(asteroid.NewAsteroidSpawner())
 }
